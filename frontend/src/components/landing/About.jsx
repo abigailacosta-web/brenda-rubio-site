@@ -2,7 +2,7 @@ import React from "react";
 
 export default function About() {
   return (
-    <section id="sobre-mi" data-testid="about-section" className="py-20 md:py-32">
+    <section id="sobre-mi" data-testid="about-section" className="py-24 md:py-40">
       <div className="container-narrow">
         <div className="grid md:grid-cols-12 gap-10 md:gap-16">
           <div className="md:col-span-4">

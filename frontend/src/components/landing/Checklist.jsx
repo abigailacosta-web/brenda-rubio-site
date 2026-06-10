@@ -22,7 +22,7 @@ const docs = [
 
 export default function Checklist() {
   return (
-    <section id="documentacion" data-testid="checklist-section" className="py-20 md:py-32">
+    <section id="documentacion" data-testid="checklist-section" className="py-24 md:py-40">
       <div className="container-narrow">
         <div className="grid md:grid-cols-12 gap-10 md:gap-16">
           <div className="md:col-span-5">

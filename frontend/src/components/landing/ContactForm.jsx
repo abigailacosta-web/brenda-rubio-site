@@ -57,7 +57,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contacto" data-testid="contact-section" className="bg-cream-200/60 py-20 md:py-32 border-y border-anthracite/15">
+    <section id="contacto" data-testid="contact-section" className="bg-cream-200/60 py-24 md:py-40 border-y border-anthracite/10">
       <div className="container-narrow">
         <div className="grid md:grid-cols-12 gap-12 md:gap-16">
           {/* Left column */}
@@ -97,7 +97,7 @@ export default function ContactForm() {
           {/* Right column — Form */}
           <div className="md:col-span-7">
             {submitted ? (
-              <div data-testid="form-success" className="border border-anthracite p-10 md:p-14 bg-cream">
+              <div data-testid="form-success" className="border border-anthracite/15 rounded-2xl p-10 md:p-14 bg-cream shadow-[0_8px_30px_-12px_rgba(26,26,26,0.18)]">
                 <p className="overline text-[10px] mb-4">Solicitud recibida</p>
                 <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-4">Gracias por confiar su expediente.</h3>
                 <p className="font-sans text-base text-anthracite-soft leading-relaxed mb-8">
@@ -107,7 +107,7 @@ export default function ContactForm() {
                   type="button"
                   onClick={() => setSubmitted(false)}
                   data-testid="form-new-request"
-                  className="inline-flex items-center gap-3 border border-anthracite text-anthracite px-6 py-3 text-xs uppercase tracking-[0.2em] hover:bg-anthracite hover:text-cream transition-colors"
+                  className="inline-flex items-center gap-3 border border-anthracite text-anthracite px-6 py-3 text-xs uppercase tracking-[0.22em] rounded-md hover:bg-anthracite hover:text-cream transition-all duration-300"
                 >
                   Enviar otra solicitud
                   <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
@@ -117,7 +117,7 @@ export default function ContactForm() {
               <form
                 onSubmit={handleSubmit}
                 data-testid="contact-form"
-                className="border border-anthracite/20 p-8 md:p-10 lg:p-12 bg-cream space-y-8"
+                className="border border-anthracite/15 rounded-2xl p-8 md:p-10 lg:p-12 bg-cream shadow-[0_8px_30px_-12px_rgba(26,26,26,0.12)] space-y-8"
                 noValidate
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
@@ -217,7 +217,7 @@ export default function ContactForm() {
                     type="submit"
                     disabled={submitting}
                     data-testid="form-submit"
-                    className="inline-flex items-center gap-3 bg-anthracite text-cream px-8 py-4 text-xs uppercase tracking-[0.25em] hover:bg-anthracite-light transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="inline-flex items-center gap-3 bg-anthracite text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] rounded-md shadow-[0_8px_24px_-12px_rgba(26,26,26,0.5)] hover:shadow-[0_14px_30px_-12px_rgba(26,26,26,0.6)] hover:bg-anthracite-light hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   >
                     {submitting ? (
                       <>

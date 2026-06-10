@@ -20,7 +20,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section id="proceso" data-testid="process-section" className="bg-anthracite text-cream py-20 md:py-32">
+    <section id="proceso" data-testid="process-section" className="bg-anthracite text-cream py-24 md:py-40">
       <div className="container-narrow">
         <div className="flex items-center gap-4 mb-6">
           <span className="block w-12 h-px bg-cream" />

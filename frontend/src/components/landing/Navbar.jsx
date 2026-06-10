@@ -37,7 +37,7 @@ export default function Navbar() {
           href="#contacto"
           onClick={scrollTo("contacto")}
           data-testid="nav-cta"
-          className="hidden md:inline-flex items-center gap-2 bg-anthracite text-cream px-5 py-2.5 text-xs uppercase tracking-[0.2em] hover:bg-anthracite-light transition-colors"
+          className="hidden md:inline-flex items-center gap-2 bg-anthracite text-cream px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] rounded-md shadow-[0_6px_18px_-10px_rgba(26,26,26,0.5)] hover:bg-anthracite-light hover:shadow-[0_10px_22px_-10px_rgba(26,26,26,0.6)] transition-all duration-300"
         >
           Solicitar audiencia
         </a>
