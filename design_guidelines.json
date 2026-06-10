@@ -1,0 +1,87 @@
+{
+  "theme_and_archetype": {
+    "theme": "LIGHT",
+    "archetype": "1 (Organic & Earthy) / 5 (Luxury) Hybrid - 'Old Money Legal'",
+    "reasoning": "The user requested a 'beige/crema' background with 'negro/antracita' typography for a 'sobria, jurídico moderno alta gama' feel. This aligns with a light-mode Luxury archetype that relies on strong typography, ample negative space, and a crisp, authoritative tone without imagery."
+  },
+  "typography": {
+    "primary_font": "Cormorant Garamond",
+    "primary_font_css": "font-serif",
+    "primary_font_usage": "H1, H2, H3, large expressive numbers, quotes. Should use tracking-tight and leading-none for large sizes.",
+    "secondary_font": "Manrope",
+    "secondary_font_css": "font-sans",
+    "secondary_font_usage": "Body text, UI elements, labels, buttons, form inputs. Should be highly legible and clean.",
+    "rules": [
+      "Never center everything. Use left-aligned text to create a structured, editorial document feel.",
+      "Overlines or small labels MUST be uppercase, tracking-[0.2em], text-xs to text-sm.",
+      "Use massive font scales for headers (text-5xl md:text-6xl+) to act as the primary visual element since there are no photos."
+    ]
+  },
+  "colors": {
+    "background_primary": "#FAF9F6",
+    "background_secondary": "#F2EFE9",
+    "text_primary": "#1A1A1A",
+    "text_secondary": "#4A4A4A",
+    "accent": "#1A1A1A",
+    "border": "rgba(26, 26, 26, 0.15)",
+    "whatsapp_brand": "#25D366"
+  },
+  "layout_and_spacing": {
+    "strategy": "Editorial Brutalism / Swiss Grid",
+    "spacing_scale": "p-8, p-12, p-24, p-32. Use generous padding to create a sense of premium exclusivity and calm.",
+    "borders": "Use 1px solid borders (border-border) to expose the grid on value proposition sections and forms.",
+    "border_radius": "rounded-none or max rounded-sm. No bubbly or highly rounded corners. Keep it sharp and official."
+  },
+  "components": {
+    "hero": {
+      "style": "Massive typography. H1 spanning almost full width. High contrast. Left aligned. Purely typographic. No images.",
+      "cta": "Flat background (Anthracite), text (Cream). Hover state: slightly lighter background (#2C2C2C). No shadows."
+    },
+    "value_proposition": {
+      "style": "CSS Grid (border-collapse). 4 distinct blocks. Use large, thin icons. Generous inner padding (p-8 or p-12). 1px borders dividing the blocks."
+    },
+    "about": {
+      "style": "Typographic block. Consider a large serif drop-cap or oversized quotation style to introduce her."
+    },
+    "process": {
+      "style": "Vertical or horizontal timeline. Use giant serif numerals (1, 2, 3) contrasting with sans-serif descriptions. Connected by a 1px anthracite line."
+    },
+    "checklist": {
+      "style": "Clean list with custom check icons (lucide-react). High contrast text."
+    },
+    "form": {
+      "style": "Shadcn-based but completely restyled. Use stark rectangles, 1px borders, Anthracite focus rings (focus:ring-[#1A1A1A]). Use Manrope for inputs."
+    },
+    "footer": {
+      "style": "Inverted dark mode: Anthracite background (#1A1A1A) with Cream text (#FAF9F6). Massive typography for 'DRA. BRENDA M. RUBIO'. Include contact info."
+    },
+    "floating_whatsapp": {
+      "style": "Fixed bottom right. Anthracite or standard WhatsApp Green background, white icon. Minimalist shadow."
+    }
+  },
+  "icons": {
+    "library": "lucide-react",
+    "style": "Stroke width 1 to 1.5. Large sizes for visual impact. Color: Anthracite (#1A1A1A)."
+  },
+  "media": {
+    "images": [
+      {
+        "url": "https://images.pexels.com/photos/26588746/pexels-photo-26588746.jpeg",
+        "category": "abstract_background",
+        "description": "Minimalist architecture. To be used ONLY as a very low-opacity texture or in an editorial half-column if a visual break is absolutely necessary. Otherwise, stick to pure typography."
+      }
+    ]
+  },
+  "testing": {
+    "rules": "All interactive elements, buttons, form fields, and main sections MUST have `data-testid` attributes (e.g., `data-testid=\"hero-cta\"`, `data-testid=\"contact-form\"`)."
+  },
+  "instructions_to_main_agent": [
+    "Install and configure `Cormorant Garamond` (font-serif) and `Manrope` (font-sans) in Tailwind.",
+    "Use pure HTML/Tailwind for main layouts to maintain the asymmetrical, editorial design. Do not use generic card components.",
+    "For the form, use Shadcn UI (Input, Textarea, Button) but override the default styles to be flat, zero-radius, and match the Beige/Anthracite palette.",
+    "Implement the WhatsApp floating button with `data-testid='whatsapp-float'`.",
+    "DO NOT add any photos of a person. The design must remain strictly typographic and iconographic as requested by the user.",
+    "Implement the backend for the form (MongoDB + Resend) as specified by the user's stack.",
+    "Ensure high contrast and accessibility. The aesthetic is 'sobria, jurídico moderno alta gama'."
+  ]
+}
