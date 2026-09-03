@@ -42,7 +42,7 @@ export default function Navbar() {
           data-testid="nav-cta"
           className="hidden md:inline-flex items-center gap-2 bg-gold text-navy px-5 py-2.5 text-[11px] uppercase font-semibold tracking-[0.2em] rounded-md shadow-[0_8px_20px_-10px_rgba(200,164,100,0.7)] hover:bg-gold-dark hover:text-white hover:-translate-y-0.5 transition-all duration-300"
         >
-          Consultar
+          Consultar disponibilidad
         </a>
       </div>
     </header>

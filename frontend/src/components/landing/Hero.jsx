@@ -3,8 +3,8 @@ import { ArrowUpRight, ShieldCheck, GraduationCap, Landmark, MessageSquare } fro
 
 const trustPoints = [
   { icon: GraduationCap, label: "Abogada UBA" },
-  { icon: ShieldCheck, label: "Accidentes de tránsito" },
-  { icon: Landmark, label: "Ley N° 26.589" },
+  { icon: ShieldCheck, label: "Ex apoderada aseguradoras" },
+  { icon: Landmark, label: "Ley N° 26.589 · CABA" },
   { icon: MessageSquare, label: "Zoom · WhatsApp" },
 ];
 
@@ -52,10 +52,14 @@ export default function Hero() {
 
           <h1
             data-testid="hero-title"
-            className="font-serif font-medium tracking-tight leading-[0.98] text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[5.75rem] text-navy animate-fade-up"
+            className="font-serif font-medium tracking-tight leading-[0.98] text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] text-navy animate-fade-up"
           >
-            Servicios de <span className="italic font-light text-navy-mid">Mediación Prejudicial</span> y Privada en <span className="text-gold-dark">CABA</span>.
+            <span className="italic font-light text-navy-mid">Mediación prejudicial</span> en accidentes de tránsito en <span className="text-gold-dark">CABA</span>.
           </h1>
+
+          <p className="mt-4 font-sans text-sm md:text-base text-slate-500 tracking-wide animate-fade-up" style={{ animationDelay: "80ms" }}>
+            Por sorteo o designación privada · Audiencias 100% virtuales por Zoom.
+          </p>
 
           <p
             data-testid="hero-subtitle"
@@ -72,7 +76,7 @@ export default function Hero() {
               data-testid="hero-cta"
               className="group inline-flex items-center gap-3 bg-navy text-ivory px-8 py-4 text-xs uppercase font-semibold tracking-[0.22em] rounded-md shadow-[0_14px_30px_-14px_rgba(15,42,71,0.6)] hover:bg-navy-mid hover:-translate-y-0.5 transition-all duration-300"
             >
-              Solicitar audiencia / Consulta directa
+              Solicitar fecha de mediación
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
             </a>
             <a
@@ -116,14 +120,13 @@ export default function Hero() {
               </div>
               <div className="relative p-8 md:p-10">
                 <p className="overline text-gold mb-6">Perfil profesional</p>
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-2 text-ivory">Brenda Mayra <em className="font-light text-ivory/80">Rubio</em></h3>
-                <p className="font-sans text-xs text-ivory/60 mb-8 tracking-wide">DNI 25.283.770 · CUIT 27-25283770-7</p>
+                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-ivory">Brenda Mayra <em className="font-light text-ivory/80">Rubio</em></h3>
 
                 <ul className="space-y-4 mb-8">
                   {[
                     "Abogada · Universidad de Buenos Aires",
                     "Mediadora Judicial · Ley N° 26.589",
-                    "Especialista en accidentes de tránsito y daños",
+                    "Ex apoderada de compañías aseguradoras",
                     "Audiencias 100% virtuales por Zoom",
                   ].map((it) => (
                     <li key={it} className="flex items-start gap-3 font-sans text-sm text-ivory/85">
