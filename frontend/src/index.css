@@ -13,46 +13,46 @@ body {
     font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #FAF9F6;
-    color: #1A1A1A;
+    background-color: #FBFBF9;
+    color: #0F2A47;
 }
 
 ::selection {
-    background-color: #1A1A1A;
-    color: #FAF9F6;
+    background-color: #0F2A47;
+    color: #F4EBD4;
 }
 
 @layer base {
     :root {
-        --background: 39 27% 97%;
-        --foreground: 0 0% 10%;
+        --background: 40 30% 98%;
+        --foreground: 211 65% 17%;
         --card: 0 0% 100%;
-        --card-foreground: 0 0% 10%;
-        --popover: 39 27% 97%;
-        --popover-foreground: 0 0% 10%;
-        --primary: 0 0% 10%;
-        --primary-foreground: 39 27% 97%;
-        --secondary: 39 17% 93%;
-        --secondary-foreground: 0 0% 10%;
-        --muted: 39 17% 93%;
-        --muted-foreground: 0 0% 29%;
-        --accent: 39 17% 93%;
-        --accent-foreground: 0 0% 10%;
+        --card-foreground: 211 65% 17%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 211 65% 17%;
+        --primary: 211 65% 17%;
+        --primary-foreground: 40 30% 98%;
+        --secondary: 220 14% 96%;
+        --secondary-foreground: 211 65% 17%;
+        --muted: 220 14% 96%;
+        --muted-foreground: 220 9% 46%;
+        --accent: 39 43% 59%;
+        --accent-foreground: 211 65% 17%;
         --destructive: 0 65% 42%;
-        --destructive-foreground: 39 27% 97%;
-        --border: 0 0% 10% / 0.15;
-        --input: 0 0% 10%;
-        --ring: 0 0% 10%;
-        --radius: 0rem;
+        --destructive-foreground: 40 30% 98%;
+        --border: 211 65% 17% / 0.15;
+        --input: 211 65% 17%;
+        --ring: 39 43% 59%;
+        --radius: 0.5rem;
     }
 }
 
 @layer base {
     * {
-        border-color: rgba(26, 26, 26, 0.15);
+        border-color: rgba(15, 42, 71, 0.12);
     }
     body {
-        @apply bg-cream text-anthracite;
+        @apply bg-ivory text-navy;
     }
     h1, h2, h3, h4, h5 {
         font-family: 'Cormorant Garamond', Georgia, serif;
@@ -63,19 +63,22 @@ body {
 
 @layer components {
     .overline {
-        @apply font-sans uppercase text-xs tracking-[0.2em] text-anthracite-soft;
+        @apply font-sans uppercase text-[10px] tracking-[0.22em] text-slate-500 font-medium;
     }
     .container-narrow {
         @apply max-w-7xl mx-auto px-6 md:px-10 lg:px-16;
     }
-    .hairline {
-        @apply border-t border-anthracite/15;
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-3 bg-gold text-navy px-8 py-4 font-sans font-semibold text-xs tracking-[0.2em] uppercase rounded-md shadow-[0_10px_28px_-14px_rgba(200,164,100,0.7)] hover:bg-gold-dark hover:text-white hover:-translate-y-0.5 transition-all duration-300;
     }
-    .btn-anthracite {
-        @apply inline-flex items-center justify-center gap-3 bg-anthracite text-cream px-8 py-4 font-sans font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:bg-anthracite-light;
+    .btn-navy {
+        @apply inline-flex items-center justify-center gap-3 bg-navy text-ivory px-8 py-4 font-sans font-semibold text-xs tracking-[0.2em] uppercase rounded-md shadow-[0_10px_28px_-14px_rgba(15,42,71,0.6)] hover:bg-navy-mid hover:-translate-y-0.5 transition-all duration-300;
     }
     .btn-outline {
-        @apply inline-flex items-center justify-center gap-3 border border-anthracite text-anthracite px-8 py-4 font-sans font-medium text-sm tracking-wide uppercase transition-all duration-300 hover:bg-anthracite hover:text-cream;
+        @apply inline-flex items-center justify-center gap-3 border border-navy text-navy px-6 py-3 font-sans font-semibold text-xs tracking-[0.2em] uppercase rounded-md hover:bg-navy hover:text-ivory transition-all duration-300;
+    }
+    .divider-gold {
+        @apply relative w-12 h-px bg-gold;
     }
 }
 
@@ -84,28 +87,11 @@ body {
         display: contents !important;
     }
     [data-debug-wrapper="true"] > * {
-        margin-left: inherit;
-        margin-right: inherit;
-        margin-top: inherit;
-        margin-bottom: inherit;
-        padding-left: inherit;
-        padding-right: inherit;
-        padding-top: inherit;
-        padding-bottom: inherit;
-        column-gap: inherit;
-        row-gap: inherit;
-        gap: inherit;
-        border-left-width: inherit;
-        border-right-width: inherit;
-        border-top-width: inherit;
-        border-bottom-width: inherit;
-        border-left-style: inherit;
-        border-right-style: inherit;
-        border-top-style: inherit;
-        border-bottom-style: inherit;
-        border-left-color: inherit;
-        border-right-color: inherit;
-        border-top-color: inherit;
-        border-bottom-color: inherit;
+        margin-left: inherit; margin-right: inherit; margin-top: inherit; margin-bottom: inherit;
+        padding-left: inherit; padding-right: inherit; padding-top: inherit; padding-bottom: inherit;
+        column-gap: inherit; row-gap: inherit; gap: inherit;
+        border-left-width: inherit; border-right-width: inherit; border-top-width: inherit; border-bottom-width: inherit;
+        border-left-style: inherit; border-right-style: inherit; border-top-style: inherit; border-bottom-style: inherit;
+        border-left-color: inherit; border-right-color: inherit; border-top-color: inherit; border-bottom-color: inherit;
     }
 }

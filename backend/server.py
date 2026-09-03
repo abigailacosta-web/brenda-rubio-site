@@ -44,7 +44,8 @@ class AudienceRequestCreate(BaseModel):
     matricula: Optional[str] = Field(default="", max_length=100)
     email: EmailStr
     phone: str = Field(..., min_length=4, max_length=50)
-    insurance_company: str = Field(..., min_length=1, max_length=200)
+    procedure_type: str = Field(..., min_length=2, max_length=120)
+    insurance_company: Optional[str] = Field(default="", max_length=200)
     description: str = Field(..., min_length=10, max_length=4000)
 
 
@@ -56,7 +57,8 @@ class AudienceRequest(BaseModel):
     matricula: Optional[str] = ""
     email: EmailStr
     phone: str
-    insurance_company: str
+    procedure_type: str
+    insurance_company: Optional[str] = ""
     description: str
     email_sent: bool = False
     email_error: Optional[str] = None
@@ -68,28 +70,29 @@ def build_notification_html(data: AudienceRequest) -> str:
     return f"""
     <!DOCTYPE html>
     <html>
-      <body style="margin:0;padding:0;background:#FAF9F6;font-family:Arial,Helvetica,sans-serif;color:#1A1A1A;">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FAF9F6;padding:32px 0;">
+      <body style="margin:0;padding:0;background:#F4F5F7;font-family:Arial,Helvetica,sans-serif;color:#0F2A47;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F5F7;padding:32px 0;">
           <tr><td align="center">
-            <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;border:1px solid rgba(26,26,26,0.15);">
-              <tr><td style="padding:32px 32px 8px 32px;border-bottom:1px solid rgba(26,26,26,0.15);">
-                <p style="margin:0 0 4px 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#4A4A4A;">Nueva solicitud</p>
-                <h1 style="margin:0;font-size:24px;font-weight:600;color:#1A1A1A;">Solicitud de Audiencia Virtual</h1>
+            <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;border:1px solid rgba(15,42,71,0.12);border-radius:8px;overflow:hidden;">
+              <tr><td style="padding:24px 32px 8px 32px;border-bottom:1px solid rgba(15,42,71,0.10);background:#0F2A47;color:#FBFBF9;">
+                <p style="margin:0 0 4px 0;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#C8A464;">Nueva solicitud</p>
+                <h1 style="margin:0 0 16px 0;font-size:22px;font-weight:600;color:#FBFBF9;">Consulta desde el sitio</h1>
               </td></tr>
               <tr><td style="padding:24px 32px;">
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:14px;color:#1A1A1A;">
-                  <tr><td style="padding:8px 0;width:200px;color:#4A4A4A;">Abogado / Estudio</td><td style="padding:8px 0;"><strong>{data.lawyer_name}</strong></td></tr>
-                  <tr><td style="padding:8px 0;color:#4A4A4A;">Matrícula</td><td style="padding:8px 0;">{data.matricula or '—'}</td></tr>
-                  <tr><td style="padding:8px 0;color:#4A4A4A;">Email</td><td style="padding:8px 0;"><a href="mailto:{data.email}" style="color:#1A1A1A;">{data.email}</a></td></tr>
-                  <tr><td style="padding:8px 0;color:#4A4A4A;">Teléfono</td><td style="padding:8px 0;">{data.phone}</td></tr>
-                  <tr><td style="padding:8px 0;color:#4A4A4A;">Aseguradora demandada</td><td style="padding:8px 0;">{data.insurance_company}</td></tr>
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:14px;color:#0F2A47;">
+                  <tr><td style="padding:8px 0;width:220px;color:#6B7280;">Nombre / Estudio</td><td style="padding:8px 0;"><strong>{data.lawyer_name}</strong></td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Matrícula</td><td style="padding:8px 0;">{data.matricula or '—'}</td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Email</td><td style="padding:8px 0;"><a href="mailto:{data.email}" style="color:#0F2A47;">{data.email}</a></td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Teléfono</td><td style="padding:8px 0;">{data.phone}</td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Tipo de trámite</td><td style="padding:8px 0;"><strong>{data.procedure_type}</strong></td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Aseguradora / Contraparte</td><td style="padding:8px 0;">{data.insurance_company or '—'}</td></tr>
                 </table>
-                <div style="margin-top:16px;padding:16px;background:#F2EFE9;border-left:3px solid #1A1A1A;">
-                  <p style="margin:0 0 8px 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#4A4A4A;">Descripción del siniestro</p>
-                  <p style="margin:0;font-size:14px;line-height:1.6;color:#1A1A1A;white-space:pre-wrap;">{data.description}</p>
+                <div style="margin-top:16px;padding:16px;background:#F4EBD4;border-left:3px solid #C8A464;border-radius:4px;">
+                  <p style="margin:0 0 8px 0;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#0F2A47;">Mensaje</p>
+                  <p style="margin:0;font-size:14px;line-height:1.6;color:#0F2A47;white-space:pre-wrap;">{data.description}</p>
                 </div>
               </td></tr>
-              <tr><td style="padding:16px 32px;border-top:1px solid rgba(26,26,26,0.15);font-size:12px;color:#4A4A4A;">
+              <tr><td style="padding:16px 32px;border-top:1px solid rgba(15,42,71,0.10);font-size:12px;color:#6B7280;">
                 Recibido el {data.created_at.strftime('%d/%m/%Y %H:%M UTC')} · ID: {data.id}
               </td></tr>
             </table>
@@ -107,7 +110,7 @@ async def send_notification_email(data: AudienceRequest) -> tuple[bool, Optional
         "from": SENDER_EMAIL,
         "to": [NOTIFICATION_EMAIL],
         "reply_to": data.email,
-        "subject": f"Nueva solicitud de mediación — {data.lawyer_name}",
+        "subject": f"Nueva consulta ({data.procedure_type}) — {data.lawyer_name}",
         "html": build_notification_html(data),
     }
     try:

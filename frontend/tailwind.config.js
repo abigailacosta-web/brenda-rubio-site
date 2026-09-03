@@ -10,17 +10,29 @@ module.exports = {
                 display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
             },
             colors: {
-                cream: {
-                    DEFAULT: '#FAF9F6',
-                    50: '#FDFCFA',
-                    100: '#FAF9F6',
-                    200: '#F2EFE9',
-                    300: '#E8E3D8',
+                // Corporate navy
+                navy: {
+                    DEFAULT: '#0F2A47',
+                    deep: '#081A2E',
+                    mid: '#1B3D66',
+                    soft: '#2E5480',
+                    ink: '#0A2540',
                 },
-                anthracite: {
-                    DEFAULT: '#1A1A1A',
-                    light: '#2C2C2C',
-                    soft: '#4A4A4A',
+                // Warm gold accents
+                gold: {
+                    DEFAULT: '#C8A464',
+                    dark: '#A88849',
+                    light: '#DBBE84',
+                    pale: '#F4EBD4',
+                },
+                // Neutral grays
+                ivory: '#FBFBF9',
+                cloud: '#F4F5F7',
+                mist: '#E7E9ED',
+                slate: {
+                    500: '#6B7280',
+                    700: '#374151',
+                    900: '#111827',
                 },
                 whatsapp: '#25D366',
                 background: 'hsl(var(--background))',
