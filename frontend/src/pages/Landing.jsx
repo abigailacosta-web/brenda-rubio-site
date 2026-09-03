@@ -4,6 +4,7 @@ import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
 import About from "@/components/landing/About";
 import Process from "@/components/landing/Process";
+import DigitalSystem from "@/components/landing/DigitalSystem";
 import ContactForm from "@/components/landing/ContactForm";
 import Footer from "@/components/landing/Footer";
 import WhatsAppFloat from "@/components/landing/WhatsAppFloat";
@@ -16,6 +17,7 @@ export default function Landing() {
       <About />
       <Services />
       <Process />
+      <DigitalSystem />
       <ContactForm />
       <Footer />
       <WhatsAppFloat />

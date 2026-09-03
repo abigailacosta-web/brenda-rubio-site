@@ -82,15 +82,6 @@ export default function ContactForm() {
             </p>
 
             <div className="mt-12 space-y-5">
-              <a href="tel:+541143746820" data-testid="contact-phone-fixed" className="flex items-start gap-4 group">
-                <span className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-navy text-gold flex-shrink-0">
-                  <Phone className="w-5 h-5" strokeWidth={1.5} />
-                </span>
-                <div>
-                  <p className="eyebrow text-[9px] mb-1">Teléfono fijo · Estudio</p>
-                  <p className="font-serif text-xl md:text-2xl text-navy group-hover:text-gold-dark transition-colors">(011) 4374-6820</p>
-                </div>
-              </a>
               <a
                 href="https://wa.me/5491156392309"
                 target="_blank"

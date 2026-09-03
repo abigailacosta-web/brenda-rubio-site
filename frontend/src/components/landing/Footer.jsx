@@ -29,11 +29,6 @@ export default function Footer() {
             <p className="eyebrow text-[10px] mb-4 text-gold">Contacto</p>
             <ul className="space-y-3 font-sans text-sm">
               <li>
-                <a href="tel:+541143746820" data-testid="footer-landline" className="hover:text-gold transition-colors">
-                  Tel. fijo: (011) 4374-6820
-                </a>
-              </li>
-              <li>
                 <a href="tel:+541156392309" data-testid="footer-phone" className="hover:text-gold transition-colors">
                   Móvil: +54 9 11 5639-2309
                 </a>
