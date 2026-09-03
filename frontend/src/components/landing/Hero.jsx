@@ -110,9 +110,47 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right column — Editorial card */}
+        {/* Right column — Editorial composition */}
         <div className="md:col-span-5">
           <div className="relative animate-fade-up" style={{ animationDelay: "300ms" }}>
+            {/* Institutional architecture image */}
+            <div
+              data-testid="hero-institutional-image"
+              className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.55)] mb-6"
+            >
+              <div className="aspect-[4/3] md:aspect-[16/11] w-full overflow-hidden bg-navy">
+                <img
+                  src="https://images.pexels.com/photos/3038555/pexels-photo-3038555.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                  alt="Palacio de Justicia — arquitectura clásica que evoca el marco institucional de la mediación prejudicial"
+                  loading="eager"
+                  className="w-full h-full object-cover"
+                  style={{ filter: "grayscale(15%) contrast(1.02) brightness(0.95)" }}
+                />
+              </div>
+              {/* Tint overlay */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(15,42,71,0.10) 0%, rgba(15,42,71,0.55) 90%)",
+                }}
+              />
+              {/* Caption */}
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-4">
+                <div>
+                  <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Marco institucional</p>
+                  <p className="font-serif text-lg md:text-xl leading-tight text-ivory">
+                    Mediación prejudicial · Ley Nº 26.589
+                  </p>
+                </div>
+                <span className="hidden sm:inline-flex items-center gap-1.5 bg-gold text-navy px-3 py-1.5 rounded-full font-sans text-[10px] uppercase tracking-widest font-semibold">
+                  CABA · Nación
+                </span>
+              </div>
+            </div>
+
+            {/* Profile card */}
             <div className="relative bg-navy text-ivory rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.6)]">
               {/* Watermark */}
               <div className="absolute -top-16 -right-10 font-serif text-[16rem] leading-none text-gold/10 select-none pointer-events-none">
