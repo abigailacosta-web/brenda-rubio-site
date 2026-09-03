@@ -3,8 +3,8 @@ import { ArrowUpRight, ShieldCheck, GraduationCap, Landmark, MessageSquare } fro
 
 const trustPoints = [
   { icon: GraduationCap, label: "Abogada UBA" },
-  { icon: ShieldCheck, label: "Ley 26.993 · Consumo" },
-  { icon: Landmark, label: "Ministerio de Justicia" },
+  { icon: ShieldCheck, label: "Accidentes de tránsito" },
+  { icon: Landmark, label: "Ley N° 26.589" },
   { icon: MessageSquare, label: "Zoom · WhatsApp" },
 ];
 
@@ -46,7 +46,7 @@ export default function Hero() {
           <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-navy/10 rounded-full pl-2 pr-4 py-2 mb-8 shadow-[0_6px_20px_-14px_rgba(15,42,71,0.35)] animate-fade-in">
             <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold text-navy text-[10px] font-bold">BR</span>
             <span className="font-sans text-[11px] tracking-[0.16em] uppercase text-navy font-medium">
-              Dra. Brenda M. Rubio · Abogada UBA · Conciliadora Ley 26.993
+              Dra. Brenda M. Rubio · Abogada UBA · Especialista en Accidentes de Tránsito
             </span>
           </div>
 
@@ -62,8 +62,7 @@ export default function Hero() {
             className="mt-8 font-sans text-base md:text-lg leading-relaxed text-slate-700 max-w-2xl animate-fade-up"
             style={{ animationDelay: "120ms" }}
           >
-            Soluciones ágiles, rigurosas y conformes al procedimiento legal vigente. Dirigido a
-            <span className="text-navy font-medium"> colegas abogados y particulares</span> en todo el país que necesiten fijar o sortear mediaciones en la Ciudad de Buenos Aires.
+            Soy <span className="text-navy font-medium">abogada y mediadora judicial</span>, especialista en la resolución de conflictos derivados de <span className="text-navy font-medium">accidentes de tránsito y siniestros viales</span>. Trabajo con estudios y colegas de todo el país que necesitan fijar o sortear mediaciones en la Ciudad de Buenos Aires.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fade-up" style={{ animationDelay: "240ms" }}>
@@ -124,7 +123,7 @@ export default function Hero() {
                   {[
                     "Abogada · Universidad de Buenos Aires",
                     "Mediadora Judicial · Ley N° 26.589",
-                    "Conciliadora en Relaciones de Consumo · Ley N° 26.993",
+                    "Especialista en accidentes de tránsito y daños",
                     "Domicilio constituido · Paraná 426, 15° K · CABA",
                   ].map((it) => (
                     <li key={it} className="flex items-start gap-3 font-sans text-sm text-ivory/85">

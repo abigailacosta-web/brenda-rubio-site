@@ -14,17 +14,15 @@ const initial = {
   matricula: "",
   email: "",
   phone: "",
-  procedure_type: "Mediación Privada",
+  procedure_type: "Mediación Prejudicial · Accidente de Tránsito",
   insurance_company: "",
   description: "",
 };
 
 const procedureOptions = [
-  "Mediación Privada",
-  "Mediación Prejudicial Obligatoria",
-  "Conciliación de Consumo (Ley 26.993)",
-  "Accidentes de Tránsito / Daños",
-  "Consulta de Abogado del Interior",
+  "Mediación Prejudicial · Accidente de Tránsito",
+  "Mediación Privada · Siniestro Vial",
+  "Consulta de Abogado del Interior / CABA",
   "Otro",
 ];
 
@@ -80,7 +78,7 @@ export default function ContactForm() {
               Solicite su <em className="font-light text-gold-dark">audiencia</em> o realice su consulta.
             </h2>
             <p className="font-sans text-base leading-relaxed text-slate-700 mt-6 max-w-md">
-              Complete el formulario o escríbanos por WhatsApp. Recibirá una respuesta institucional con la propuesta de fecha, canal de audiencia y detalle del trámite.
+              Complete el formulario o escríbame por WhatsApp. Le responderé personalmente con la propuesta de fecha, el canal de audiencia (presencial o Zoom) y el detalle del trámite.
             </p>
 
             <div className="mt-12 space-y-5">
@@ -141,9 +139,9 @@ export default function ContactForm() {
                   <span className="w-1.5 h-1.5 rounded-full bg-gold-dark" />
                   <p className="overline text-[9px] text-gold-dark">Consulta recibida</p>
                 </div>
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-navy">Gracias. Hemos recibido su consulta.</h3>
+                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-navy">Gracias. Recibí su consulta.</h3>
                 <p className="font-sans text-base text-slate-700 leading-relaxed mb-8">
-                  La Dra. Brenda M. Rubio le responderá a la brevedad por el medio que indicó, con la propuesta de audiencia y el detalle del trámite correspondiente.
+                  Le responderé personalmente a la brevedad por el medio que indicó, con la propuesta de audiencia y el detalle del trámite correspondiente.
                 </p>
                 <button
                   type="button"
@@ -264,7 +262,7 @@ export default function ContactForm() {
 
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-4 border-t border-navy/10">
                   <p className="font-sans text-xs text-slate-500 max-w-xs leading-relaxed">
-                    Datos tratados con estricta confidencialidad. Serán utilizados únicamente para responder su consulta.
+                    Trato sus datos con estricta confidencialidad. Los utilizo únicamente para responder su consulta.
                   </p>
                   <button
                     type="submit"

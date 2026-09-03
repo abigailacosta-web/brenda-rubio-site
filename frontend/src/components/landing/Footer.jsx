@@ -17,7 +17,7 @@ export default function Footer() {
             <h2 className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.9] tracking-tight text-ivory">
               Dra. Brenda M. <em className="font-light text-gold">Rubio</em>.
             </h2>
-            <p className="overline mt-4 text-ivory/60 text-[10px]">Abogada UBA · Mediadora Judicial · Conciliadora Ley 26.993</p>
+            <p className="overline mt-4 text-ivory/60 text-[10px]">Abogada UBA · Mediadora Judicial · Especialista en Accidentes de Tránsito</p>
           </div>
           <div className="hidden md:flex flex-col items-end">
             <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold text-navy font-serif text-2xl">R</span>
@@ -72,9 +72,9 @@ export default function Footer() {
             <p className="overline text-[10px] mb-4 text-gold">Marco jurídico</p>
             <ul className="space-y-3 font-sans text-sm">
               <li>Ley Nacional 26.589 · Mediación</li>
-              <li>Ley Nacional 26.993 · Consumo</li>
-              <li>Registro Nacional de Conciliadores</li>
               <li>Ministerio de Justicia y DH</li>
+              <li>Mat. MJyDH N° 5050/2020</li>
+              <li>Especialidad: Accidentes de Tránsito</li>
             </ul>
           </div>
         </div>

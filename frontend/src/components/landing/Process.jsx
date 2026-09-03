@@ -6,25 +6,25 @@ const steps = [
     n: "01",
     icon: FileSearch,
     title: "Recepción y análisis",
-    text: "Recibimos los datos del reclamo o del expediente. Confirmamos si el caso corresponde a mediación prejudicial obligatoria en CABA o a una conciliación privada y evaluamos la vía más eficiente.",
+    text: "Recibo los datos del reclamo o del expediente. Confirmo si el caso corresponde a mediación prejudicial obligatoria por accidente de tránsito en CABA o a una mediación privada, y evalúo la vía más eficiente para avanzar.",
   },
   {
     n: "02",
     icon: Users,
     title: "Designación del mediador",
-    text: "Existen dos opciones legales de designación: por sorteo público mediante el Ministerio de Justicia y DH, o por elección directa entre las partes desde la lista oficial de mediadores habilitados.",
+    text: "Existen dos opciones legales de designación: por sorteo público mediante el Ministerio de Justicia y DH, o por elección directa entre las partes desde la lista oficial de mediadores habilitados. Trabajo bajo cualquiera de las dos modalidades.",
   },
   {
     n: "03",
     icon: Gavel,
     title: "Audiencia y negociación",
-    text: "Notificamos por Carta Documento y celebramos la audiencia — presencial en CABA o virtual por Zoom. Actuamos como facilitadoras profesionales manteniendo confidencialidad y buena fe procesal.",
+    text: "Notifico por Carta Documento y celebro la audiencia de forma presencial en CABA o virtual por Zoom. Actúo como facilitadora profesional, manteniendo la confidencialidad y la buena fe procesal en todo momento.",
   },
   {
     n: "04",
     icon: CheckCircle2,
     title: "Acuerdo o acta oficial",
-    text: "Si hay acuerdo, se instrumenta con firma digital y adquiere efecto de cosa juzgada, habilitando ejecución directa. Si no lo hay, se libra acta oficial que habilita la vía judicial correspondiente.",
+    text: "Si hay acuerdo, se instrumenta con firma digital y adquiere efecto de cosa juzgada, habilitando ejecución directa. Si no lo hay, libro un acta oficial de inmediato para que el colega inicie la vía judicial correspondiente.",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function Process() {
         </div>
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-16 md:mb-20">
           <h2 className="md:col-span-8 font-serif text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-tight text-navy">
-            ¿Cómo funciona la <em className="font-light text-gold-dark">mediación</em> en la Ciudad de Buenos Aires?
+            ¿Cómo trabajo la <em className="font-light text-gold-dark">mediación</em> vial en la Ciudad de Buenos Aires?
           </h2>
           <p className="md:col-span-4 md:col-start-9 font-sans text-base leading-relaxed text-slate-700 self-end">
             La mediación es una etapa previa <strong className="text-navy">obligatoria</strong> al juicio en la jurisdicción de CABA. Un acuerdo mediado tiene <strong className="text-navy">efecto de cosa juzgada</strong> y es directamente ejecutable.
