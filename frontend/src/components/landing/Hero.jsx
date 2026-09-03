@@ -120,26 +120,13 @@ export default function Hero() {
                 loading="eager"
                 fetchPriority="high"
                 className="portrait-slot w-full block"
-                style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(15%) contrast(1.02) brightness(0.95)" : "none" }}
+                style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(20%) saturate(0.85) contrast(1.02) brightness(0.94)" : "none" }}
               />
               <div
                 aria-hidden="true"
                 className="absolute inset-0 pointer-events-none"
-                style={{ background: "linear-gradient(180deg, rgba(15,42,71,0.05) 0%, rgba(15,42,71,0.6) 92%)" }}
+                style={{ background: "linear-gradient(180deg, rgba(15,42,71,0.10) 0%, rgba(15,42,71,0.30) 100%)" }}
               />
-              <figcaption className="absolute bottom-0 left-0 right-0 p-4 md:p-5 flex items-end justify-between gap-4">
-                <div>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gold-light mb-1">
-                    {CONTACT.portraitIsInstitutional ? "Imagen institucional temporal" : "Retrato profesional"}
-                  </p>
-                  <p className="font-serif text-base md:text-lg leading-tight text-ivory">
-                    Mediación prejudicial · Ley N° 26.589
-                  </p>
-                </div>
-                <span className="hidden sm:inline-flex items-center gap-1.5 bg-gold-dark text-white px-2.5 py-1 rounded-full font-sans text-[10px] uppercase tracking-widest font-semibold">
-                  CABA
-                </span>
-              </figcaption>
             </figure>
 
             {/* Profile card — compact */}
