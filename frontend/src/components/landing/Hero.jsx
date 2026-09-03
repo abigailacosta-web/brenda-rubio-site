@@ -1,5 +1,6 @@
 import React from "react";
-import { ArrowUpRight, ShieldCheck, GraduationCap, Landmark, MessageSquare } from "lucide-react";
+import { ArrowUpRight, GraduationCap, ShieldCheck, Landmark, MessageSquare } from "lucide-react";
+import { CONTACT, waLink } from "@/config/contact";
 
 const trustPoints = [
   { icon: GraduationCap, label: "Abogada UBA" },
@@ -9,19 +10,17 @@ const trustPoints = [
 ];
 
 export default function Hero() {
-  const scrollTo = (id) => (e) => {
+  const go = (id) => (e) => {
     e.preventDefault();
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <section
       id="top"
       data-testid="hero-section"
-      className="relative pt-28 pb-24 md:pt-36 md:pb-40 overflow-hidden"
+      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
     >
-      {/* Background layer */}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory to-cloud/50" />
       <div
         aria-hidden="true"
@@ -32,163 +31,151 @@ export default function Hero() {
           backgroundSize: "56px 56px",
         }}
       />
-      {/* Corner accent */}
       <div
         aria-hidden="true"
-        className="absolute -top-40 -right-40 w-[560px] h-[560px] rounded-full opacity-30 blur-3xl"
+        className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full opacity-25 blur-3xl"
         style={{ background: "radial-gradient(circle, #C8A464 0%, transparent 65%)" }}
       />
 
-      <div className="relative container-narrow grid md:grid-cols-12 gap-10 md:gap-14 items-center">
-        {/* Left column */}
-        <div className="md:col-span-7">
-          {/* Trust badge */}
-          <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-navy/10 rounded-full pl-2 pr-4 py-2 mb-8 shadow-[0_6px_20px_-14px_rgba(15,42,71,0.35)] animate-fade-in">
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold text-navy text-[10px] font-bold">BR</span>
-            <span className="font-sans text-[11px] tracking-[0.16em] uppercase text-navy font-medium">
-              Dra. Brenda M. Rubio · Abogada UBA · Especialista en Accidentes de Tránsito
+      <div className="relative container-narrow grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+        {/* Left */}
+        <div className="md:col-span-7 pt-2 md:pt-4">
+          <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-navy/10 rounded-full pl-2 pr-4 py-1.5 mb-6 shadow-[0_6px_20px_-14px_rgba(15,42,71,0.35)] animate-fade-in">
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-dark text-white text-[10px] font-bold">BR</span>
+            <span className="font-sans text-[10px] tracking-[0.16em] uppercase text-navy font-semibold">
+              Dra. Brenda M. Rubio · Abogada UBA · Especialista en accidentes de tránsito
             </span>
           </div>
 
           <h1
             data-testid="hero-title"
-            className="font-serif font-medium tracking-tight leading-[0.98] text-[2.4rem] sm:text-5xl md:text-6xl lg:text-[5.5rem] text-navy animate-fade-up"
+            className="font-serif font-medium tracking-tight leading-[0.98] text-[2.25rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.75rem] text-navy animate-fade-up"
           >
             <span className="italic font-light text-navy-mid">Mediación prejudicial</span> en accidentes de tránsito en <span className="text-gold-dark">CABA</span>.
           </h1>
 
-          <p className="mt-4 font-sans text-sm md:text-base text-slate-500 tracking-wide animate-fade-up" style={{ animationDelay: "80ms" }}>
-            Por sorteo o designación privada · Audiencias 100% virtuales por Zoom.
+          <p className="mt-3 font-sans text-sm md:text-[15px] text-slate-700 font-medium animate-fade-up" style={{ animationDelay: "80ms" }}>
+            Por sorteo público o designación privada · Audiencias 100% virtuales por Zoom.
           </p>
 
           <p
             data-testid="hero-subtitle"
-            className="mt-8 font-sans text-base md:text-lg leading-relaxed text-slate-700 max-w-2xl animate-fade-up"
+            className="mt-6 font-sans text-[15px] md:text-base leading-relaxed text-slate-700 max-w-[62ch] animate-fade-up"
             style={{ animationDelay: "120ms" }}
           >
-            Soy <span className="text-navy font-medium">abogada y mediadora judicial</span>, especialista en la resolución de conflictos derivados de <span className="text-navy font-medium">accidentes de tránsito y siniestros viales</span>. Trabajo con estudios y colegas de todo el país que necesitan fijar o sortear mediaciones en la Ciudad de Buenos Aires.
+            Soy <span className="text-navy font-semibold">abogada y mediadora prejudicial matriculada</span>, especializada en la gestión y resolución de conflictos derivados de accidentes de tránsito y siniestros viales. Trabajo con abogados y estudios jurídicos de CABA y de todo el país que necesitan fijar o sortear mediaciones en esta jurisdicción.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fade-up" style={{ animationDelay: "240ms" }}>
+          <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center gap-3 animate-fade-up" style={{ animationDelay: "220ms" }}>
             <a
               href="#contacto"
-              onClick={scrollTo("contacto")}
+              onClick={go("contacto")}
               data-testid="hero-cta"
-              className="group inline-flex items-center gap-3 bg-navy text-ivory px-8 py-4 text-xs uppercase font-semibold tracking-[0.22em] rounded-md shadow-[0_14px_30px_-14px_rgba(15,42,71,0.6)] hover:bg-navy-mid hover:-translate-y-0.5 transition-all duration-300"
+              className="group inline-flex items-center gap-2.5 bg-navy text-ivory px-7 py-3.5 text-[11px] uppercase font-semibold tracking-[0.2em] rounded-md shadow-[0_14px_30px_-14px_rgba(15,42,71,0.6)] hover:bg-navy-mid hover:-translate-y-0.5 transition-all duration-300"
             >
               Solicitar fecha de mediación
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
             </a>
             <a
-              href="https://wa.me/5491156392309?text=Hola%20Dra.%20Rubio%2C%20quisiera%20consultar%20por%20una%20mediaci%C3%B3n."
+              href={waLink()}
               target="_blank"
               rel="noopener noreferrer"
               data-testid="hero-whatsapp"
-              className="inline-flex items-center gap-3 border border-navy/20 text-navy px-6 py-4 text-xs uppercase font-semibold tracking-[0.22em] rounded-md bg-white/70 hover:bg-white hover:border-navy/40 transition-all duration-300"
+              className="inline-flex items-center gap-2.5 border border-navy/30 text-navy px-6 py-3.5 text-[11px] uppercase font-semibold tracking-[0.2em] rounded-md bg-white/70 hover:bg-navy hover:text-ivory hover:border-navy transition-all duration-300"
             >
-              WhatsApp directo
+              Escribir por WhatsApp
             </a>
           </div>
 
-          {/* Trust chips */}
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-2xl">
             {trustPoints.map((t, i) => {
               const Icon = t.icon;
               return (
                 <div
                   key={t.label}
                   data-testid={`hero-trust-${i}`}
-                  className="flex items-center gap-2.5 bg-white/70 border border-navy/10 rounded-lg px-3 py-2.5 backdrop-blur-sm"
+                  className="flex items-center gap-2 bg-white/70 border border-navy/10 rounded-lg px-3 py-2 backdrop-blur-sm"
                 >
                   <span className="inline-flex items-center justify-center w-7 h-7 rounded-md bg-navy/5 text-navy">
                     <Icon className="w-3.5 h-3.5" strokeWidth={1.75} />
                   </span>
-                  <span className="font-sans text-[11px] font-medium text-navy leading-tight">{t.label}</span>
+                  <span className="font-sans text-[11px] font-semibold text-navy leading-tight">{t.label}</span>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Right column — Editorial composition */}
+        {/* Right — Portrait slot + profile card */}
         <div className="md:col-span-5">
           <div className="relative animate-fade-up" style={{ animationDelay: "300ms" }}>
-            {/* Institutional architecture image */}
-            <div
-              data-testid="hero-institutional-image"
-              className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.55)] mb-6"
+            {/* Portrait slot — 4:5 aspect. Replace CONTACT.portraitImage when photo arrives. */}
+            <figure
+              data-testid="hero-portrait-slot"
+              className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.55)] mb-5 bg-navy"
             >
-              <div className="aspect-[4/3] md:aspect-[16/11] w-full overflow-hidden bg-navy">
-                <img
-                  src="https://images.pexels.com/photos/3038555/pexels-photo-3038555.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                  alt="Palacio de Justicia — arquitectura clásica que evoca el marco institucional de la mediación prejudicial"
-                  loading="eager"
-                  className="w-full h-full object-cover"
-                  style={{ filter: "grayscale(15%) contrast(1.02) brightness(0.95)" }}
-                />
-              </div>
-              {/* Tint overlay */}
+              <img
+                src={CONTACT.portraitImage}
+                alt={CONTACT.portraitAlt}
+                loading="eager"
+                fetchPriority="high"
+                className="portrait-slot w-full block"
+                style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(15%) contrast(1.02) brightness(0.95)" : "none" }}
+              />
               <div
                 aria-hidden="true"
                 className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(15,42,71,0.10) 0%, rgba(15,42,71,0.55) 90%)",
-                }}
+                style={{ background: "linear-gradient(180deg, rgba(15,42,71,0.05) 0%, rgba(15,42,71,0.6) 92%)" }}
               />
-              {/* Caption */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 flex items-end justify-between gap-4">
+              <figcaption className="absolute bottom-0 left-0 right-0 p-4 md:p-5 flex items-end justify-between gap-4">
                 <div>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.22em] text-gold mb-1">Marco institucional</p>
-                  <p className="font-serif text-lg md:text-xl leading-tight text-ivory">
-                    Mediación prejudicial · Ley Nº 26.589
+                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-gold-light mb-1">
+                    {CONTACT.portraitIsInstitutional ? "Imagen institucional temporal" : "Retrato profesional"}
+                  </p>
+                  <p className="font-serif text-base md:text-lg leading-tight text-ivory">
+                    Mediación prejudicial · Ley N° 26.589
                   </p>
                 </div>
-                <span className="hidden sm:inline-flex items-center gap-1.5 bg-gold text-navy px-3 py-1.5 rounded-full font-sans text-[10px] uppercase tracking-widest font-semibold">
-                  CABA · Nación
+                <span className="hidden sm:inline-flex items-center gap-1.5 bg-gold-dark text-white px-2.5 py-1 rounded-full font-sans text-[10px] uppercase tracking-widest font-semibold">
+                  CABA
                 </span>
-              </div>
-            </div>
+              </figcaption>
+            </figure>
 
-            {/* Profile card */}
+            {/* Profile card — compact */}
             <div className="relative bg-navy text-ivory rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.6)]">
-              {/* Watermark */}
-              <div className="absolute -top-16 -right-10 font-serif text-[16rem] leading-none text-gold/10 select-none pointer-events-none">
-                M
-              </div>
-              <div className="relative p-8 md:p-10">
-                <p className="eyebrow text-gold mb-6">Perfil profesional</p>
-                <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-ivory">Brenda Mayra <em className="font-light text-ivory/80">Rubio</em></h3>
-
-                <ul className="space-y-4 mb-8">
+              <div className="absolute -top-14 -right-8 font-serif text-[13rem] leading-none text-gold/10 select-none pointer-events-none">M</div>
+              <div className="relative p-6 md:p-7">
+                <p className="eyebrow-sm text-gold-light mb-4">Perfil profesional</p>
+                <h3 className="font-serif text-2xl md:text-[1.75rem] leading-tight mb-4 text-ivory">
+                  Brenda Mayra <em className="font-light text-ivory/80">Rubio</em>
+                </h3>
+                <ul className="space-y-2.5 mb-5">
                   {[
                     "Abogada · Universidad de Buenos Aires",
-                    "Mediadora Judicial · Ley N° 26.589",
-                    "Ex apoderada de compañías aseguradoras",
+                    "Mediadora prejudicial · Ley N° 26.589",
+                    "Experiencia previa como apoderada de compañías aseguradoras",
                     "Audiencias 100% virtuales por Zoom",
                   ].map((it) => (
-                    <li key={it} className="flex items-start gap-3 font-sans text-sm text-ivory/85">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
+                    <li key={it} className="flex items-start gap-3 font-sans text-[13px] text-ivory/90 leading-snug">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold-light flex-shrink-0" />
                       {it}
                     </li>
                   ))}
                 </ul>
-
-                <div className="grid grid-cols-2 gap-4 pt-6 border-t border-ivory/15">
+                <div className="grid grid-cols-2 gap-3 pt-4 border-t border-ivory/15">
                   <div>
-                    <p className="eyebrow text-[9px] text-ivory/50 mb-1">Cobertura</p>
-                    <p className="font-serif text-lg text-ivory">CABA · Nación</p>
+                    <p className="eyebrow-sm text-[9px] text-ivory/60 mb-0.5">Jurisdicción</p>
+                    <p className="font-serif text-base text-ivory">CABA</p>
                   </div>
                   <div>
-                    <p className="eyebrow text-[9px] text-ivory/50 mb-1">Consultas</p>
-                    <p className="font-serif text-lg text-ivory">Todo el país</p>
+                    <p className="eyebrow-sm text-[9px] text-ivory/60 mb-0.5">Consultas</p>
+                    <p className="font-serif text-base text-ivory">Todo el país</p>
                   </div>
                 </div>
-
-                {/* Registration strip — integrated, no overlap */}
-                <div className="mt-6 -mx-8 md:-mx-10 -mb-8 md:-mb-10 px-8 md:px-10 py-4 bg-gold/95 text-navy flex items-center justify-between gap-4">
-                  <span className="font-sans text-[10px] uppercase tracking-[0.22em] font-semibold">Registro habilitante</span>
-                  <span className="font-sans text-sm md:text-base font-semibold tracking-tight tabular-nums">Mat. MJyDH N° 5050/2020</span>
+                <div className="mt-5 -mx-6 md:-mx-7 -mb-6 md:-mb-7 px-6 md:px-7 py-3 bg-gold-dark text-white flex items-center justify-between gap-3">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-semibold">Registro habilitante</span>
+                  <span className="font-sans text-sm font-semibold tabular-nums">Mat. MJyDH N° 5050/2020</span>
                 </div>
               </div>
             </div>
