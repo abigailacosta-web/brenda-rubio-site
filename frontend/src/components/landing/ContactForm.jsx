@@ -78,7 +78,7 @@ export default function ContactForm() {
               Solicite su <em className="font-light text-gold-dark">audiencia</em> o realice su consulta.
             </h2>
             <p className="font-sans text-base leading-relaxed text-slate-700 mt-6 max-w-md">
-              Complete el formulario o escríbame por WhatsApp. Le responderé personalmente con la propuesta de fecha, el canal de audiencia (presencial o Zoom) y el detalle del trámite.
+              Complete el formulario o escríbame por WhatsApp. Le responderé personalmente con la propuesta de fecha y el enlace de Zoom para la audiencia virtual, junto al detalle del trámite.
             </p>
 
             <div className="mt-12 space-y-5">
@@ -122,7 +122,7 @@ export default function ContactForm() {
                 <div>
                   <p className="overline text-[9px] mb-1">Domicilio constituido · CABA</p>
                   <p className="font-serif text-xl md:text-2xl text-navy leading-tight">Paraná 426, Piso 15° "K"</p>
-                  <p className="font-sans text-sm text-slate-500 mt-1">Ciudad Autónoma de Buenos Aires · Cobertura: Argentina</p>
+                  <p className="font-sans text-sm text-slate-500 mt-1">Ciudad Autónoma de Buenos Aires · Audiencias 100% virtuales por Zoom</p>
                 </div>
               </div>
             </div>

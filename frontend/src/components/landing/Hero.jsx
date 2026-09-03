@@ -124,7 +124,7 @@ export default function Hero() {
                     "Abogada · Universidad de Buenos Aires",
                     "Mediadora Judicial · Ley N° 26.589",
                     "Especialista en accidentes de tránsito y daños",
-                    "Domicilio constituido · Paraná 426, 15° K · CABA",
+                    "Audiencias 100% virtuales por Zoom",
                   ].map((it) => (
                     <li key={it} className="flex items-start gap-3 font-sans text-sm text-ivory/85">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
@@ -136,19 +136,20 @@ export default function Hero() {
                 <div className="grid grid-cols-2 gap-4 pt-6 border-t border-ivory/15">
                   <div>
                     <p className="overline text-[9px] text-ivory/50 mb-1">Cobertura</p>
-                    <p className="font-serif text-xl text-ivory">CABA · Nación</p>
+                    <p className="font-serif text-lg text-ivory">CABA · Nación</p>
                   </div>
                   <div>
                     <p className="overline text-[9px] text-ivory/50 mb-1">Consultas</p>
-                    <p className="font-serif text-xl text-ivory">Todo el país</p>
+                    <p className="font-serif text-lg text-ivory">Todo el país</p>
                   </div>
                 </div>
+
+                {/* Registration strip — integrated, no overlap */}
+                <div className="mt-6 -mx-8 md:-mx-10 -mb-8 md:-mb-10 px-8 md:px-10 py-4 bg-gold/95 text-navy flex items-center justify-between gap-4">
+                  <span className="font-sans text-[10px] uppercase tracking-[0.22em] font-semibold">Registro habilitante</span>
+                  <span className="font-sans text-sm md:text-base font-semibold tracking-tight tabular-nums">Mat. MJyDH N° 5050/2020</span>
+                </div>
               </div>
-            </div>
-            {/* Floating gold accent card */}
-            <div className="absolute -bottom-6 -left-6 md:-left-8 bg-gold text-navy rounded-xl px-6 py-4 shadow-[0_20px_40px_-20px_rgba(200,164,100,0.9)] hidden md:block">
-              <p className="overline text-[9px] mb-1">Registro</p>
-              <p className="font-serif text-xl leading-tight">Mat. MJyDH N° 5050</p>
             </div>
           </div>
         </div>

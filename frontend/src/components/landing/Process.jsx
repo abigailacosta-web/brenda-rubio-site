@@ -18,7 +18,7 @@ const steps = [
     n: "03",
     icon: Gavel,
     title: "Audiencia y negociación",
-    text: "Notifico por Carta Documento y celebro la audiencia de forma presencial en CABA o virtual por Zoom. Actúo como facilitadora profesional, manteniendo la confidencialidad y la buena fe procesal en todo momento.",
+    text: "Notifico por Carta Documento y celebro la audiencia de forma 100% virtual por Zoom, con firma digital habilitada. Actúo como facilitadora profesional, manteniendo la confidencialidad y la buena fe procesal en todo momento.",
   },
   {
     n: "04",

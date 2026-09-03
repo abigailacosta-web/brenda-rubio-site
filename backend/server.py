@@ -57,7 +57,7 @@ class AudienceRequest(BaseModel):
     matricula: Optional[str] = ""
     email: EmailStr
     phone: str
-    procedure_type: str
+    procedure_type: Optional[str] = ""
     insurance_company: Optional[str] = ""
     description: str
     email_sent: bool = False

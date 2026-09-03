@@ -36,15 +36,14 @@ export default function About() {
           </div>
 
           <div className="md:col-span-7 space-y-6 font-sans text-base md:text-lg leading-relaxed text-slate-700">
-            <p className="text-navy">
-              <span className="font-serif float-left text-7xl md:text-8xl leading-[0.8] mr-3 mt-1 text-gold-dark">S</span>
-              oy <em className="text-navy">Brenda Mayra Rubio</em>, abogada graduada de la Universidad de Buenos Aires (UBA) y Mediadora Judicial habilitada bajo la Ley Nº 26.589. Me especializo en la gestión y resolución de conflictos derivados de accidentes de tránsito, brindando un servicio caracterizado por el rigor legal, la celeridad operativa y la confidencialidad absoluta.
+            <p className="font-serif text-2xl md:text-[1.6rem] leading-[1.4] text-navy italic font-light">
+              "Soy <em className="not-italic font-medium">Brenda Mayra Rubio</em>, abogada graduada de la Universidad de Buenos Aires (UBA) y Mediadora Judicial habilitada bajo la Ley Nº 26.589. Me especializo en la gestión y resolución de conflictos derivados de accidentes de tránsito, brindando un servicio caracterizado por el rigor legal, la celeridad operativa y la confidencialidad absoluta."
             </p>
             <p>
               Mi práctica se dedica de manera exclusiva a la mediación prejudicial y privada en <em className="text-navy">reclamos por siniestros viales</em> en la Ciudad Autónoma de Buenos Aires: lesiones, daños materiales y perjuicios civiles y comerciales derivados del hecho. Trabajo con estudios jurídicos y colegas litigantes de todo el país que necesitan fijar o sortear mediaciones en la jurisdicción CABA.
             </p>
             <p>
-              Mi trayectoria previa como apoderada de compañías de seguros me otorgó una comprensión profunda de la lógica aseguradora, los criterios económicos y los tiempos internos de las compañías. Esa experiencia hoy la traslado a cada audiencia: propongo negociaciones realistas, acelero los acuerdos y destrabo expedientes que llevan meses sin avanzar.
+              Todas las audiencias se celebran <strong className="text-navy">100% virtuales por Zoom</strong>, con firma digital habilitada. Mi trayectoria previa como apoderada de compañías de seguros me otorgó una comprensión profunda de la lógica aseguradora, los criterios económicos y los tiempos internos de las compañías. Esa experiencia hoy la traslado a cada audiencia: propongo negociaciones realistas, acelero los acuerdos y destrabo expedientes que llevan meses sin avanzar.
             </p>
 
             <div className="pt-8 mt-8 border-t border-navy/10 grid grid-cols-3 gap-6">

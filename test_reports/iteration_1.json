@@ -1,0 +1,27 @@
+{
+  "summary": "Tested the 3 reported visual/copy bugs plus regressions on the Dra. Brenda Rubio landing page (desktop 1920 + mobile 390) and the backend audience-request API. All 3 bugs are confirmed FIXED: (1) matricula now renders as an integrated gold strip at the bottom of the navy profile card (Manrope sans, 16px, static position, y=743 vs Cobertura block ending at y=702 -> no overlap; verified on mobile too); (2) no drop-cap in Sobre mí — first paragraph is a serif italic pull-quote starting with 'Soy Brenda Mayra Rubio, abogada graduada...', no floated/oversized element found; (3) copy is 100% virtual everywhere — the word 'presencial' does not appear anywhere in the rendered page; Process step 3 says '100% virtual por Zoom', ContactForm subtitle says 'enlace de Zoom para la audiencia virtual', ContactForm sidebar + Footer + Hero bullet all say 'Audiencias 100% virtuales por Zoom'. Regression: all key testids visible, 4 process steps, 2 service cards, 4 correct dropdown options, form submits successfully (form-success + form-new-request reset works), zero console/page errors. Backend: POST /api/audience-requests returns 201 with persisted object and full validation (422 on bad payloads). One real backend bug found: GET /api/audience-requests returns 500.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "GET /api/audience-requests", "issue": "Returns 500 ResponseValidationError: an existing document in the 'audience_requests' collection has no 'procedure_type' field (legacy/earlier-schema doc), and the strict response_model=List[AudienceRequest] fails validation. Not used by the landing page, but the endpoint is unusable. Fix: make procedure_type Optional with default in the read model or filter/backfill legacy docs."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": ["Fix GET /api/audience-requests 500 (legacy doc missing procedure_type / strict response_model)"],
+  "critical_code_review_comments": [
+    "GET /api/audience-requests uses a strict response_model over historical documents; either backfill/migrate legacy docs or relax the read model (Optional fields) to avoid 500s.",
+    "The list endpoint is unauthenticated and exposes all submitted personal data (name, email, phone, case description) publicly — consider protecting or removing it."
+  ],
+  "updated_files": ["/app/backend/tests/backend_test.py"],
+  "success_rate": {"backend": "88% (7/8 pytest tests; only GET list endpoint fails)", "frontend": "100% (all bug fixes + regressions pass)"},
+  "seed_data_creation": "Created 3 TEST_ audience requests via API/UI (lawyer_name prefixed TEST_); no delete endpoint exists so they remain in MongoDB 'audience_requests'.",
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Regression suite at /app/backend/tests/backend_test.py (pytest, uses REACT_APP_BACKEND_URL). Resend email_sent=false with domain-verification error is expected in testing mode. Frontend testids all present and working; the only open issue is GET /api/audience-requests 500 caused by a legacy DB document lacking procedure_type.",
+  "rca_of_the_issue": "GET /api/audience-requests: FastAPI serialize_response raises ResponseValidationError for item index 2 ('procedure_type' Field required) — a document stored before the field was added. Reproduce: GET {BASE_URL}/api/audience-requests -> 500 Internal Server Error; backend.err.log shows the missing-field validation error."
+}

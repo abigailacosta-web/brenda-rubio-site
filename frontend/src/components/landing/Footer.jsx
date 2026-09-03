@@ -63,7 +63,7 @@ export default function Footer() {
               <li>Paraná 426, Piso 15° "K"</li>
               <li>Ciudad Autónoma de Buenos Aires</li>
               <li className="text-ivory/60 text-xs mt-3">
-                Cobertura: Argentina · Audiencias presenciales en CABA o virtuales por Zoom.
+                Cobertura: Argentina · Audiencias 100% virtuales por Zoom.
               </li>
             </ul>
           </div>
