@@ -8,15 +8,17 @@ export default function About() {
         <div className="grid md:grid-cols-12 gap-12 md:gap-20 lg:gap-24 items-start">
           {/* Left column — Title + accreditation badges */}
           <aside className="md:col-span-5 md:sticky md:top-28">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="divider-gold" />
-              <span className="overline">Sobre mí</span>
+            <div className="flex items-center gap-4 mb-10">
+              <span className="block w-14 h-[2px] bg-gold" />
+              <span className="font-sans uppercase text-xs md:text-[13px] tracking-[0.28em] text-navy font-semibold">
+                Sobre mí
+              </span>
             </div>
             <h2
               data-testid="about-title"
               className="font-serif font-medium text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-navy"
             >
-              Rigor legal, agilidad <span className="text-gold-dark">operativa</span>.
+              Rigor legal, agilidad <span className="italic font-light text-gold-dark">operativa</span>.
             </h2>
 
             {/* Accreditation badges — vertical minimalist list */}
@@ -29,7 +31,7 @@ export default function About() {
                   <Award className="w-4 h-4" strokeWidth={1.5} />
                 </span>
                 <div className="flex-1">
-                  <p className="overline text-[9px] mb-1">Formación & habilitación</p>
+                  <p className="eyebrow text-[9px] mb-1">Formación & habilitación</p>
                   <p className="font-serif text-lg md:text-xl leading-snug text-navy">
                     Universidad de Buenos Aires (UBA)
                     <span className="text-slate-500 font-sans text-sm md:text-base"> · Mat. MJyDH N° 5050/2020</span>
@@ -42,7 +44,7 @@ export default function About() {
                   <ShieldCheck className="w-4 h-4" strokeWidth={1.5} />
                 </span>
                 <div className="flex-1">
-                  <p className="overline text-[9px] mb-1">Especialidad</p>
+                  <p className="eyebrow text-[9px] mb-1">Especialidad</p>
                   <p className="font-serif text-lg md:text-xl leading-snug text-navy">
                     Mediación en Accidentes de Tránsito
                     <span className="text-slate-500 font-sans text-sm md:text-base"> · Ley N° 26.589</span>
@@ -81,7 +83,7 @@ export default function About() {
                       <path d="M3 17l9 5 9-5" />
                     </svg>
                   </span>
-                  <p className="overline text-gold">Diferencial competitivo</p>
+                  <p className="eyebrow text-gold">Diferencial competitivo</p>
                 </div>
                 <p className="font-serif text-2xl md:text-[1.75rem] leading-[1.25] mb-4 text-ivory">
                   Ex apoderada de <em className="font-light text-gold">compañías aseguradoras</em>.

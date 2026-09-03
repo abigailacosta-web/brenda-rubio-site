@@ -119,7 +119,7 @@ export default function Hero() {
                 M
               </div>
               <div className="relative p-8 md:p-10">
-                <p className="overline text-gold mb-6">Perfil profesional</p>
+                <p className="eyebrow text-gold mb-6">Perfil profesional</p>
                 <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-6 text-ivory">Brenda Mayra <em className="font-light text-ivory/80">Rubio</em></h3>
 
                 <ul className="space-y-4 mb-8">
@@ -138,11 +138,11 @@ export default function Hero() {
 
                 <div className="grid grid-cols-2 gap-4 pt-6 border-t border-ivory/15">
                   <div>
-                    <p className="overline text-[9px] text-ivory/50 mb-1">Cobertura</p>
+                    <p className="eyebrow text-[9px] text-ivory/50 mb-1">Cobertura</p>
                     <p className="font-serif text-lg text-ivory">CABA · Nación</p>
                   </div>
                   <div>
-                    <p className="overline text-[9px] text-ivory/50 mb-1">Consultas</p>
+                    <p className="eyebrow text-[9px] text-ivory/50 mb-1">Consultas</p>
                     <p className="font-serif text-lg text-ivory">Todo el país</p>
                   </div>
                 </div>

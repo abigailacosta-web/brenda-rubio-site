@@ -72,7 +72,7 @@ export default function ContactForm() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-4 mb-6">
               <span className="divider-gold" />
-              <span className="overline">Contacto directo</span>
+              <span className="eyebrow">Contacto directo</span>
             </div>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.02] tracking-tight text-navy">
               Solicite su <em className="font-light text-gold-dark">audiencia</em> o realice su consulta.
@@ -87,7 +87,7 @@ export default function ContactForm() {
                   <Phone className="w-5 h-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <p className="overline text-[9px] mb-1">Teléfono fijo · Estudio</p>
+                  <p className="eyebrow text-[9px] mb-1">Teléfono fijo · Estudio</p>
                   <p className="font-serif text-xl md:text-2xl text-navy group-hover:text-gold-dark transition-colors">(011) 4374-6820</p>
                 </div>
               </a>
@@ -102,7 +102,7 @@ export default function ContactForm() {
                   <Phone className="w-5 h-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <p className="overline text-[9px] mb-1">WhatsApp · Móvil</p>
+                  <p className="eyebrow text-[9px] mb-1">WhatsApp · Móvil</p>
                   <p className="font-serif text-xl md:text-2xl text-navy group-hover:text-gold-dark transition-colors">+54 9 11 5639-2309</p>
                 </div>
               </a>
@@ -111,7 +111,7 @@ export default function ContactForm() {
                   <MailIcon className="w-5 h-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <p className="overline text-[9px] mb-1">Email institucional</p>
+                  <p className="eyebrow text-[9px] mb-1">Email institucional</p>
                   <p className="font-serif text-xl md:text-2xl text-navy group-hover:text-gold-dark transition-colors">brendamrubio@gmail.com</p>
                 </div>
               </a>
@@ -120,7 +120,7 @@ export default function ContactForm() {
                   <MapPin className="w-5 h-5" strokeWidth={1.5} />
                 </span>
                 <div>
-                  <p className="overline text-[9px] mb-1">Domicilio constituido · CABA</p>
+                  <p className="eyebrow text-[9px] mb-1">Domicilio constituido · CABA</p>
                   <p className="font-serif text-xl md:text-2xl text-navy leading-tight">Paraná 426, Piso 15° "K"</p>
                   <p className="font-sans text-sm text-slate-500 mt-1">Ciudad Autónoma de Buenos Aires · Audiencias 100% virtuales por Zoom</p>
                 </div>
@@ -137,7 +137,7 @@ export default function ContactForm() {
               >
                 <div className="inline-flex items-center gap-2 bg-gold/10 border border-gold/20 rounded-full px-3 py-1 mb-6">
                   <span className="w-1.5 h-1.5 rounded-full bg-gold-dark" />
-                  <p className="overline text-[9px] text-gold-dark">Consulta recibida</p>
+                  <p className="eyebrow text-[9px] text-gold-dark">Consulta recibida</p>
                 </div>
                 <h3 className="font-serif text-3xl md:text-4xl leading-tight mb-4 text-navy">Gracias. Recibí su consulta.</h3>
                 <p className="font-sans text-base text-slate-700 leading-relaxed mb-8">
@@ -162,7 +162,7 @@ export default function ContactForm() {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
                   <div className="md:col-span-2">
-                    <Label htmlFor="lawyer_name" className="overline mb-2 block">
+                    <Label htmlFor="lawyer_name" className="eyebrow mb-2 block">
                       Nombre / Estudio *
                     </Label>
                     <Input
@@ -176,7 +176,7 @@ export default function ContactForm() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="email" className="overline mb-2 block">
+                    <Label htmlFor="email" className="eyebrow mb-2 block">
                       Email *
                     </Label>
                     <Input
@@ -191,7 +191,7 @@ export default function ContactForm() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone" className="overline mb-2 block">
+                    <Label htmlFor="phone" className="eyebrow mb-2 block">
                       Teléfono *
                     </Label>
                     <Input
@@ -206,7 +206,7 @@ export default function ContactForm() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="matricula" className="overline mb-2 block">
+                    <Label htmlFor="matricula" className="eyebrow mb-2 block">
                       Matrícula profesional <span className="normal-case tracking-normal text-slate-500">(opcional)</span>
                     </Label>
                     <Input
@@ -219,7 +219,7 @@ export default function ContactForm() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="procedure_type" className="overline mb-2 block">
+                    <Label htmlFor="procedure_type" className="eyebrow mb-2 block">
                       Tipo de trámite *
                     </Label>
                     <select
@@ -244,7 +244,7 @@ export default function ContactForm() {
                     </select>
                   </div>
                   <div className="md:col-span-2">
-                    <Label htmlFor="description" className="overline mb-2 block">
+                    <Label htmlFor="description" className="eyebrow mb-2 block">
                       Mensaje / Descripción del caso *
                     </Label>
                     <Textarea

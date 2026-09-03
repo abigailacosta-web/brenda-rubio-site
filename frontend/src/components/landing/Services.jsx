@@ -50,7 +50,7 @@ export default function Services() {
       <div className="relative container-narrow">
         <div className="flex items-center gap-4 mb-6">
           <span className="w-12 h-px bg-gold" />
-          <span className="overline text-gold">Servicios & especialidad</span>
+          <span className="eyebrow text-gold">Servicios & especialidad</span>
         </div>
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-16 md:mb-20">
           <h2 className="md:col-span-7 font-serif text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.05] tracking-tight text-ivory">

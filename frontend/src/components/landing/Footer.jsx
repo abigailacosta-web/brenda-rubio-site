@@ -17,7 +17,7 @@ export default function Footer() {
             <h2 className="font-serif text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[8rem] leading-[0.9] tracking-tight text-ivory">
               Dra. Brenda M. <em className="font-light text-gold">Rubio</em>.
             </h2>
-            <p className="overline mt-4 text-ivory/60 text-[10px]">Abogada UBA · Mediadora Judicial · Especialista en Accidentes de Tránsito</p>
+            <p className="eyebrow mt-4 text-ivory/60 text-[10px]">Abogada UBA · Mediadora Judicial · Especialista en Accidentes de Tránsito</p>
           </div>
           <div className="hidden md:flex flex-col items-end">
             <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold text-navy font-serif text-2xl">R</span>
@@ -26,7 +26,7 @@ export default function Footer() {
 
         <div className="mt-16 md:mt-20 grid md:grid-cols-12 gap-10 md:gap-12 border-t border-ivory/15 pt-12">
           <div className="md:col-span-4">
-            <p className="overline text-[10px] mb-4 text-gold">Contacto</p>
+            <p className="eyebrow text-[10px] mb-4 text-gold">Contacto</p>
             <ul className="space-y-3 font-sans text-sm">
               <li>
                 <a href="tel:+541143746820" data-testid="footer-landline" className="hover:text-gold transition-colors">
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <p className="overline text-[10px] mb-4 text-gold">Domicilio constituido · CABA</p>
+            <p className="eyebrow text-[10px] mb-4 text-gold">Domicilio constituido · CABA</p>
             <ul className="space-y-3 font-sans text-sm">
               <li>Paraná 426, Piso 15° "K"</li>
               <li>Ciudad Autónoma de Buenos Aires</li>
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <p className="overline text-[10px] mb-4 text-gold">Marco jurídico</p>
+            <p className="eyebrow text-[10px] mb-4 text-gold">Marco jurídico</p>
             <ul className="space-y-3 font-sans text-sm">
               <li>Ley Nacional 26.589 · Mediación</li>
               <li>Ministerio de Justicia y DH</li>

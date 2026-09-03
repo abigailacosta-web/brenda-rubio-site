@@ -40,7 +40,7 @@ export default function Process() {
       <div className="relative container-narrow">
         <div className="flex items-center gap-4 mb-6">
           <span className="divider-gold" />
-          <span className="overline">Marco legal · Buenos Aires</span>
+          <span className="eyebrow">Marco legal · Buenos Aires</span>
         </div>
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-16 md:mb-20">
           <h2 className="md:col-span-8 font-serif text-4xl md:text-5xl lg:text-[3.75rem] leading-[1.02] tracking-tight text-navy">
@@ -81,7 +81,7 @@ export default function Process() {
         {/* Callout */}
         <div className="mt-16 md:mt-20 bg-navy text-ivory rounded-2xl p-8 md:p-10 grid md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8">
-            <p className="overline text-gold mb-3">Aviso institucional</p>
+            <p className="eyebrow text-gold mb-3">Aviso institucional</p>
             <p className="font-serif text-2xl md:text-3xl leading-tight text-ivory">
               Un acuerdo mediado, firmado con las formalidades legales, es <em className="font-light text-gold">título ejecutivo</em> y evita años de proceso judicial.
             </p>

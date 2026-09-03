@@ -1,0 +1,31 @@
+{
+  "summary": "Iteration 2 focused on the 4 reported visual bugs (overline CSS collision, About H2 typography, 'SOBRE MÍ' eyebrow prominence, global text overlap) plus backend/form regression. Backend pytest suite: 8/8 passed. Frontend verified via computed-style DOM audits on desktop 1440x900 and mobile 390x844. ALL 4 bugs verified FIXED. 25 .eyebrow elements have textDecorationLine='none'; zero elements anywhere on the page have overline/line-through; document.querySelectorAll('.overline').length === 0 on both viewports. about-title reads exactly 'Rigor legal, agilidad operativa.' fully in Cormorant Garamond (H2 and accent span both '\"Cormorant Garamond\", Georgia, serif'), navy #0F2A47 with the single accent span 'operativa' in italic rgb(168,136,73). 'SOBRE MÍ' eyebrow: navy solid, font-weight 600, 13px, letter-spacing 3.64px, uppercase, opacity 1, with a 56x2 gold (rgb(200,164,100)) bar to its left. Zero text-node overlaps detected across About/Services/Process/Contact/Footer on mobile; hero 'Mat. MJyDH N° 5050/2020' badge does not intersect 'Cobertura' or 'Consultas'; all 6 form label/input gaps = 8px (no touching). No horizontal overflow on mobile (scrollWidth 390 = clientWidth). All 27 required data-testids present. E2E form submit succeeded (success state 'Gracias. Recibí su consulta.'), record persisted via GET /api/audience-requests (200, 8 docs). Empty-submit validation blocks with toast 'Por favor complete los campos requeridos...' and 4 :invalid fields. Navbar anchors, hero CTAs, WhatsApp float all functional. No JS/console errors.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "/api/audience-requests", "issue": "email_sent=false with Resend domain-verification error (expected in testing mode per main agent note). No DELETE endpoint exists, so TEST_QA seed record cannot be cleaned up programmatically."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "ContactForm — Tipo de trámite", "issues": ["Field is a NATIVE <select> (browser default OS picker), not the shadcn Select component used elsewhere in the design system — visually inconsistent with the rest of the styled inputs.", "The native select pre-selects the first option ('Mediación Prejudicial · Accidente de Tránsito') instead of showing a 'Seleccione…' placeholder, so this required field is never actually empty and a user can submit the default without a conscious choice (confirmed: submission with no explicit selection persisted that value)."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Optional polish: replace the native <select> for 'Tipo de trámite' with the shadcn Select and add a non-selectable placeholder option so the required field starts empty."
+  ],
+  "critical_code_review_comments": [
+    "index.css .eyebrow correctly sets both `no-underline` and explicit `text-decoration-line: none`, which prevents any future Tailwind utility collision — good fix. Recommend never naming custom component classes after Tailwind utilities (.overline, .underline, .italic, .capitalize).",
+    "No DELETE endpoint for /api/audience-requests means QA-created records accumulate in the collection; consider an admin-guarded delete for cleanup."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "seed_data_creation": "One audience request created via UI: lawyer_name='TEST_QA Estudio', email='qa.test@example.com'. Not removable (no DELETE endpoint).",
+  "should_call_test_agent_after_fix": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All 4 visual bugs from iteration 2 are verified fixed on desktop 1440x900 and mobile 390x844 via computed-style assertions. Backend regression suite at /app/backend/tests/backend_test.py (8 tests, all pass) — run with `python -m pytest backend/tests/backend_test.py`. Note: 'Tipo de trámite' is a native <select>, so Playwright must use page.select_option() (no [role=option] elements exist). Only remaining item is the cosmetic native-select vs shadcn Select inconsistency.",
+  "rca_of_the_issue": "Root cause (already fixed by main agent): the custom class name `.overline` collided with Tailwind's native `.overline` utility which emits `text-decoration-line: overline`, rendering a line above every eyebrow label. Renaming to `.eyebrow` plus an explicit `text-decoration-line: none` resolved it; verified by auditing computed styles of all 25 .eyebrow nodes and by scanning every element on the page for overline/line-through (0 matches)."
+}

@@ -27,7 +27,7 @@ export default function Navbar() {
           <span className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-navy text-gold font-serif text-lg tracking-tight">R</span>
           <span className="flex flex-col">
             <span className="font-serif text-lg md:text-xl tracking-tight text-navy">Dra. Brenda M. Rubio</span>
-            <span className="overline mt-0.5 text-[9px]">Abogada UBA · Mediadora Judicial</span>
+            <span className="eyebrow mt-0.5 text-[9px]">Abogada UBA · Mediadora Judicial</span>
           </span>
         </a>
         <nav className="hidden md:flex items-center gap-8 font-sans text-sm text-navy">
