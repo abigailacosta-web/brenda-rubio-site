@@ -13,9 +13,10 @@ export default function About() {
             </div>
             <h2
               data-testid="about-title"
-              className="font-serif font-medium text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.05] tracking-tight text-navy"
+              className="font-serif font-medium text-[2rem] sm:text-[2.4rem] md:text-[2.5rem] lg:text-[2.75rem] leading-[1.15] tracking-tight text-navy"
             >
-              Rigor legal, agilidad <span className="italic font-light text-gold-dark">operativa</span>.
+              <span className="block">Experiencia para comprender cada conflicto.</span>
+              <span className="block mt-2 italic font-light text-gold-dark">Criterio y dedicación para conducir cada mediación.</span>
             </h2>
 
             <div data-testid="about-credentials" className="mt-10 space-y-4">
