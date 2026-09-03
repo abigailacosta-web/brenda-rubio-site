@@ -120,7 +120,7 @@ export default function Hero() {
                 loading="eager"
                 fetchPriority="high"
                 className="portrait-slot w-full block"
-                style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(20%) saturate(0.85) contrast(1.02) brightness(0.94)" : "none" }}
+                style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(20%) saturate(0.85) contrast(1.02) brightness(0.94)" : "none", objectPosition: "center 18%" }}
               />
               <div
                 aria-hidden="true"

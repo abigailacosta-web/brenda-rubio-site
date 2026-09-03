@@ -12,11 +12,10 @@ export const CONTACT = {
   address: 'Paraná 426, Piso 5° "K", CABA',
   addressCity: "Ciudad Autónoma de Buenos Aires",
   modality: "100% virtual por Zoom",
-  // Portrait slot — replace this URL when the professional photo is delivered.
-  // Currently uses an editorial urban photo of Buenos Aires (temporary rest visual).
-  portraitImage: "https://images.pexels.com/photos/29090113/pexels-photo-29090113.jpeg?auto=compress&cs=tinysrgb&w=1200",
-  portraitAlt: "Vista aérea de una avenida de Buenos Aires al atardecer — imagen editorial temporal en reemplazo del futuro retrato profesional",
-  portraitIsInstitutional: true,
+  // Portrait — Brenda's professional photo
+  portraitImage: "https://customer-assets-4nw71qhi.emergentagent.net/job_dra-brenda-rubio/artifacts/rq2zg6xk_Foto%20orginal%20Brenda.png",
+  portraitAlt: "Retrato profesional de la Dra. Brenda Mayra Rubio",
+  portraitIsInstitutional: false,
 };
 
 export const waLink = (message = "Hola Dra. Rubio, quisiera consultar disponibilidad para una mediación.") =>
