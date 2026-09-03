@@ -1,40 +1,58 @@
 import React from "react";
+import { Award, ShieldCheck } from "lucide-react";
 
 export default function About() {
   return (
     <section id="sobre-mi" data-testid="about-section" className="py-24 md:py-40 bg-ivory">
       <div className="container-narrow">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-4 mb-6">
+        <div className="grid md:grid-cols-12 gap-12 md:gap-20 lg:gap-24 items-start">
+          {/* Left column — Title + accreditation badges */}
+          <aside className="md:col-span-5 md:sticky md:top-28">
+            <div className="flex items-center gap-4 mb-8">
               <span className="divider-gold" />
               <span className="overline">Sobre mí</span>
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-navy">
-              Rigor legal, <em className="font-light text-gold-dark">agilidad operativa</em>.
+            <h2
+              data-testid="about-title"
+              className="font-serif font-medium text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] tracking-tight text-navy"
+            >
+              Rigor legal, agilidad <span className="text-gold-dark">operativa</span>.
             </h2>
-            <p className="overline mt-8 text-[10px] text-slate-500">Mat. MJyDH N° 5050/2020 · CABA</p>
 
-            <div className="mt-10 grid grid-cols-2 gap-4">
-              <div className="bg-cloud rounded-xl p-5 border border-navy/5">
-                <p className="overline text-[9px] mb-2">Formación</p>
-                <p className="font-serif text-lg text-navy leading-tight">Universidad de Buenos Aires</p>
+            {/* Accreditation badges — vertical minimalist list */}
+            <div
+              data-testid="about-credentials"
+              className="mt-12 space-y-4"
+            >
+              <div className="flex items-start gap-4 pb-5 border-b border-navy/10">
+                <span className="mt-0.5 inline-flex items-center justify-center w-10 h-10 rounded-lg bg-navy/[0.04] border border-navy/10 text-navy flex-shrink-0">
+                  <Award className="w-4 h-4" strokeWidth={1.5} />
+                </span>
+                <div className="flex-1">
+                  <p className="overline text-[9px] mb-1">Formación & habilitación</p>
+                  <p className="font-serif text-lg md:text-xl leading-snug text-navy">
+                    Universidad de Buenos Aires (UBA)
+                    <span className="text-slate-500 font-sans text-sm md:text-base"> · Mat. MJyDH N° 5050/2020</span>
+                  </p>
+                </div>
               </div>
-              <div className="bg-cloud rounded-xl p-5 border border-navy/5">
-                <p className="overline text-[9px] mb-2">Acreditación</p>
-                <p className="font-serif text-lg text-navy leading-tight">Ministerio de Justicia y DH</p>
-              </div>
-              <div className="bg-cloud rounded-xl p-5 border border-navy/5">
-                <p className="overline text-[9px] mb-2">Marco legal</p>
-                <p className="font-serif text-lg text-navy leading-tight">Ley Nacional N° 26.589</p>
-              </div>
-              <div className="bg-cloud rounded-xl p-5 border border-navy/5">
-                <p className="overline text-[9px] mb-2">Especialidad</p>
-                <p className="font-serif text-lg text-navy leading-tight">Accidentes de tránsito</p>
+
+              <div className="flex items-start gap-4">
+                <span className="mt-0.5 inline-flex items-center justify-center w-10 h-10 rounded-lg bg-navy/[0.04] border border-navy/10 text-navy flex-shrink-0">
+                  <ShieldCheck className="w-4 h-4" strokeWidth={1.5} />
+                </span>
+                <div className="flex-1">
+                  <p className="overline text-[9px] mb-1">Especialidad</p>
+                  <p className="font-serif text-lg md:text-xl leading-snug text-navy">
+                    Mediación en Accidentes de Tránsito
+                    <span className="text-slate-500 font-sans text-sm md:text-base"> · Ley N° 26.589</span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </aside>
 
+          {/* Right column — Narrative */}
           <div className="md:col-span-7 space-y-6 font-sans text-base md:text-lg leading-relaxed text-slate-700">
             <p className="font-serif text-2xl md:text-[1.6rem] leading-[1.4] text-navy italic font-light">
               "Soy <em className="not-italic font-medium">Brenda Mayra Rubio</em>, abogada graduada de la Universidad de Buenos Aires (UBA) y Mediadora Judicial habilitada bajo la Ley Nº 26.589. Me especializo en la gestión y resolución de conflictos derivados de accidentes de tránsito, brindando un servicio caracterizado por el rigor legal, la celeridad operativa y la confidencialidad absoluta."
