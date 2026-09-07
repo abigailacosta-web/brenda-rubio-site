@@ -19,7 +19,7 @@ export default function Hero() {
     <section
       id="top"
       data-testid="hero-section"
-      className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden"
+      className="relative pt-24 pb-10 md:pt-32 md:pb-14 overflow-hidden"
     >
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-ivory via-ivory to-cloud/50" />
       <div
