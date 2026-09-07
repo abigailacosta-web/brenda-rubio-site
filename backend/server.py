@@ -3,9 +3,13 @@ from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
-import asyncio
+import re
+import ipaddress
 import logging
-import resend
+import httpx
+from html import escape
+from html.parser import HTMLParser
+from urllib.parse import urlparse
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional, Literal
@@ -21,9 +25,10 @@ mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Resend
-resend.api_key = os.environ.get('RESEND_API_KEY', '')
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
+# Emergent managed email proxy — base URL is a constant, never from env
+EMAIL_BASE_URL = "https://integrations.emergentagent.com"
+EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
+EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
 NOTIFICATION_EMAIL = os.environ.get('NOTIFICATION_EMAIL', 'brendamrubio@gmail.com')
 
 app = FastAPI(title="Dra. Brenda M. Rubio — Mediación Prejudicial")
@@ -69,7 +74,7 @@ def build_notification_html(data: AudienceRequest) -> str:
     consultant_label = "Abogado/a o Estudio Jurídico" if data.consultant_type == "abogado" else "Particular"
     matricula_row = ""
     if data.consultant_type == "abogado" and data.matricula:
-        matricula_row = f'<tr><td style="padding:8px 0;color:#6B7280;">Matrícula</td><td style="padding:8px 0;">{data.matricula}</td></tr>'
+        matricula_row = f'<tr><td style="padding:8px 0;color:#6B7280;">Matrícula</td><td style="padding:8px 0;">{escape(data.matricula)}</td></tr>'
     return f"""
     <!DOCTYPE html>
     <html>
@@ -84,19 +89,19 @@ def build_notification_html(data: AudienceRequest) -> str:
               <tr><td style="padding:24px 32px;">
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-size:14px;color:#0F2A47;">
                   <tr><td style="padding:8px 0;width:220px;color:#6B7280;">Tipo de consultante</td><td style="padding:8px 0;"><strong>{consultant_label}</strong></td></tr>
-                  <tr><td style="padding:8px 0;color:#6B7280;">Nombre / Estudio</td><td style="padding:8px 0;"><strong>{data.lawyer_name}</strong></td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Nombre / Estudio</td><td style="padding:8px 0;"><strong>{escape(data.lawyer_name)}</strong></td></tr>
                   {matricula_row}
-                  <tr><td style="padding:8px 0;color:#6B7280;">Email</td><td style="padding:8px 0;"><a href="mailto:{data.email}" style="color:#0F2A47;">{data.email}</a></td></tr>
-                  <tr><td style="padding:8px 0;color:#6B7280;">Teléfono</td><td style="padding:8px 0;">{data.phone or '—'}</td></tr>
-                  <tr><td style="padding:8px 0;color:#6B7280;">Tipo de trámite</td><td style="padding:8px 0;"><strong>{data.procedure_type}</strong></td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Email</td><td style="padding:8px 0;"><a href="mailto:{escape(data.email)}" style="color:#0F2A47;">{escape(data.email)}</a></td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Teléfono</td><td style="padding:8px 0;">{escape(data.phone) if data.phone else '—'}</td></tr>
+                  <tr><td style="padding:8px 0;color:#6B7280;">Tipo de trámite</td><td style="padding:8px 0;"><strong>{escape(data.procedure_type)}</strong></td></tr>
                 </table>
                 <div style="margin-top:16px;padding:16px;background:#F4EBD4;border-left:3px solid #C8A464;border-radius:4px;">
                   <p style="margin:0 0 8px 0;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#0F2A47;">Consulta</p>
-                  <p style="margin:0;font-size:14px;line-height:1.6;color:#0F2A47;white-space:pre-wrap;">{data.description}</p>
+                  <p style="margin:0;font-size:14px;line-height:1.6;color:#0F2A47;white-space:pre-wrap;">{escape(data.description)}</p>
                 </div>
               </td></tr>
               <tr><td style="padding:16px 32px;border-top:1px solid rgba(15,42,71,0.10);font-size:12px;color:#6B7280;">
-                Recibido el {data.created_at.strftime('%d/%m/%Y %H:%M UTC')} · ID: {data.id}
+                Recibido el {data.created_at.strftime('%d/%m/%Y %H:%M UTC')} · ID: {data.id} · Enviado por {escape(EMAIL_FROM_NAME)}
               </td></tr>
             </table>
           </td></tr>
@@ -106,22 +111,104 @@ def build_notification_html(data: AudienceRequest) -> str:
     """
 
 
-async def send_notification_email(data: AudienceRequest) -> tuple[bool, Optional[str]]:
-    if not resend.api_key:
-        return False, "RESEND_API_KEY no configurado"
-    params = {
-        "from": SENDER_EMAIL,
-        "to": [NOTIFICATION_EMAIL],
-        "reply_to": data.email,
-        "subject": f"Nueva consulta ({data.procedure_type}) — {data.lawyer_name}",
-        "html": build_notification_html(data),
-    }
+# ---------- Guardrail gate (estructura anti-abuso del email) ----------
+_SHORTENERS = ("bit.ly", "tinyurl.com", "t.co", "is.gd", "cutt.ly", "goo.gl", "rebrand.ly")
+_CRED_ASK = ("reply with your password", "reply with the code", "send your password", "cvv",
+             "send us your password", "enter your password below", "confirm your card number",
+             "your full card number", "seed phrase", "recovery phrase", "verify your card",
+             "social security number", "confirm your bank details")
+_HOSTISH = re.compile(r"\b(?:https?://)?((?:[a-z0-9-]+\.)+[a-z]{2,})", re.I)
+
+
+def _host_ok(host: str) -> bool:
+    if not host or "xn--" in host:
+        return False
     try:
-        result = await asyncio.to_thread(resend.Emails.send, params)
-        logger.info(f"Resend email sent: {result.get('id') if isinstance(result, dict) else result}")
+        ipaddress.ip_address(host)
+        return False
+    except ValueError:
+        pass
+    return not any(host == s or host.endswith("." + s) for s in _SHORTENERS)
+
+
+def _same_site(shown: str, real: str) -> bool:
+    return shown == real or real.endswith("." + shown) or shown.endswith("." + real)
+
+
+class _EmailScan(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.tags, self.urls, self.anchors = set(), [], []
+        self._href, self._text = None, []
+
+    def handle_starttag(self, tag, attrs):
+        self.tags.add(tag.lower())
+        self.urls += [v for k, v in attrs if k.lower() in ("href", "src") and v]
+        if tag.lower() == "a":
+            self._href = dict((k.lower(), v) for k, v in attrs).get("href")
+            self._text = []
+
+    def handle_data(self, data):
+        if self._href is not None:
+            self._text.append(data)
+
+    def handle_endtag(self, tag):
+        if tag.lower() == "a" and self._href is not None:
+            self.anchors.append((self._href, "".join(self._text)))
+            self._href, self._text = None, []
+
+
+def _assert_safe_email(subject: str, html: str) -> None:
+    scan = _EmailScan()
+    scan.feed(html)
+    if scan.tags & {"form", "input", "textarea", "select"}:
+        raise ValueError("No forms or input fields in email")
+    body = f"{subject}\n{html}".lower()
+    for p in _CRED_ASK:
+        if p in body:
+            raise ValueError(f"Email asks the recipient for credentials: {p!r}")
+    for url in scan.urls:
+        low = url.strip().lower()
+        if low.startswith(("mailto:", "tel:", "cid:", "#")):
+            continue
+        if not low.startswith("https://"):
+            raise ValueError(f"Email links/assets must be absolute https: {url!r}")
+        host = urlparse(low).hostname or ""
+        if not _host_ok(host) or urlparse(low).username is not None:
+            raise ValueError(f"Shortened, numeric-host or credential-bearing URL: {url!r}")
+    for href, text in scan.anchors:
+        real = urlparse(href.strip().lower()).hostname or ""
+        if not real:
+            continue
+        for m in _HOSTISH.finditer(text):
+            if not _same_site(m.group(1).lower(), real):
+                raise ValueError(f"Anchor text {m.group(1)!r} != real link host {real!r}")
+
+
+async def send_email(*, to: str, subject: str, html: str) -> Optional[str]:
+    _assert_safe_email(subject, html)
+    payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
+    async with httpx.AsyncClient(timeout=30) as http_client:
+        resp = await http_client.post(
+            f"{EMAIL_BASE_URL}/api/v1/email/send",
+            headers={"X-Email-Key": EMAIL_KEY},
+            json=payload,
+        )
+    resp.raise_for_status()
+    return resp.json().get("id")
+
+
+async def send_notification_email(data: AudienceRequest) -> tuple[bool, Optional[str]]:
+    try:
+        email_id = await send_email(
+            to=NOTIFICATION_EMAIL,
+            subject="Nueva consulta desde el sitio web",
+            html=build_notification_html(data),
+        )
+        logger.info(f"Notification email sent: {email_id}")
         return True, None
     except Exception as e:
-        logger.exception("Resend send failed")
+        logger.exception("Notification email failed")
         return False, str(e)
 
 
