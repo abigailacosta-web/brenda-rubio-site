@@ -37,7 +37,7 @@ export default function Hero() {
         style={{ background: "radial-gradient(circle, #C8A464 0%, transparent 65%)" }}
       />
 
-      <div className="relative container-narrow grid md:grid-cols-12 gap-8 md:gap-12 items-start">
+      <div className="relative container-narrow grid md:grid-cols-12 gap-6 md:gap-x-12 md:gap-y-10 items-start">
         <div className="md:col-span-7 pt-2 md:pt-4">
           <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-navy/10 rounded-full pl-2 pr-4 py-1.5 mb-6 shadow-[0_6px_20px_-14px_rgba(15,42,71,0.35)] animate-fade-in">
             <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-dark text-white text-[10px] font-bold">BR</span>
@@ -108,56 +108,57 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="md:col-span-5">
-          <div className="relative animate-fade-up" style={{ animationDelay: "300ms" }}>
-            <figure
-              data-testid="hero-portrait-slot"
-              className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.55)] mb-5 bg-navy"
-            >
-              <img
-                src={CONTACT.portraitImage}
-                alt={CONTACT.portraitAlt}
-                loading="eager"
-                fetchPriority="high"
-                className="portrait-slot w-full block"
-                style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(20%) saturate(0.85) contrast(1.02) brightness(0.94)" : "none", objectPosition: "center 18%" }}
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 pointer-events-none"
-                style={{ background: "linear-gradient(180deg, rgba(15,42,71,0.10) 0%, rgba(15,42,71,0.30) 100%)" }}
-              />
-            </figure>
+        <figure
+          data-testid="hero-portrait-slot"
+          className="md:col-span-5 md:col-start-8 relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.55)] bg-navy animate-fade-up self-start"
+          style={{ animationDelay: "300ms" }}
+        >
+          <img
+            src={CONTACT.portraitImage}
+            alt={CONTACT.portraitAlt}
+            loading="eager"
+            fetchPriority="high"
+            className="portrait-slot w-full block"
+            style={{ filter: CONTACT.portraitIsInstitutional ? "grayscale(20%) saturate(0.85) contrast(1.02) brightness(0.94)" : "none", objectPosition: "center 18%" }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none"
+            style={{ background: "linear-gradient(180deg, rgba(15,42,71,0.10) 0%, rgba(15,42,71,0.30) 100%)" }}
+          />
+        </figure>
 
-            <div className="relative bg-navy text-ivory rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.6)]">
-              <div className="absolute -top-14 -right-8 font-serif text-[13rem] leading-none text-gold/10 select-none pointer-events-none">M</div>
-              <div className="relative p-6 md:p-7">
-                <p className="eyebrow-sm text-gold-light mb-4">Perfil profesional</p>
-                <h3 className="font-serif text-2xl md:text-[1.75rem] leading-tight mb-4 text-ivory">
+        <div data-testid="hero-profile-card" className="md:col-span-12 animate-fade-up" style={{ animationDelay: "360ms" }}>
+          <div className="relative bg-navy text-ivory rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.6)]">
+            <div aria-hidden="true" className="absolute -top-14 -right-8 font-serif text-[13rem] leading-none text-gold/10 select-none pointer-events-none">M</div>
+            <div className="relative p-6 md:p-8 grid gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-center md:gap-x-10">
+              <div>
+                <p className="eyebrow-sm text-gold-light mb-3">Perfil profesional</p>
+                <h3 className="font-serif text-2xl md:text-[1.75rem] leading-tight text-ivory">
                   Brenda Mayra <em className="font-light text-ivory/80">Rubio</em>
                 </h3>
-                <ul className="space-y-2.5 mb-5">
-                  {[
-                    "Abogada · Universidad de Buenos Aires",
-                    "Mediadora prejudicial · Ley N° 26.589",
-                    "Registro Nacional de Mediación",
-                    "Audiencias presenciales y a distancia",
-                  ].map((it) => (
-                    <li key={it} className="flex items-start gap-3 font-sans text-[13px] text-ivory/90 leading-snug">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold-light flex-shrink-0" />
-                      {it}
-                    </li>
-                  ))}
-                </ul>
-                <div className="pt-4 border-t border-ivory/15">
-                  <p className="eyebrow-sm text-[9px] text-ivory/60 mb-1">Consultas</p>
+                <div className="mt-4 pt-4 border-t border-ivory/15 flex items-baseline gap-3">
+                  <p className="eyebrow-sm text-[9px] text-ivory/60">Consultas</p>
                   <p className="font-serif text-base text-ivory">Todo el país</p>
                 </div>
-                <div className="mt-5 -mx-6 md:-mx-7 -mb-6 md:-mb-7 px-6 md:px-7 py-3 bg-gold-dark text-white flex items-center justify-between gap-3">
-                  <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-semibold">Registro habilitante</span>
-                  <span className="font-sans text-sm font-semibold tabular-nums">Mat. MJyDH N° 5050/2020</span>
-                </div>
               </div>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
+                {[
+                  "Abogada · Universidad de Buenos Aires",
+                  "Mediadora prejudicial · Ley N° 26.589",
+                  "Registro Nacional de Mediación",
+                  "Audiencias presenciales y a distancia",
+                ].map((it) => (
+                  <li key={it} className="flex items-start gap-3 font-sans text-[13px] text-ivory/90 leading-snug">
+                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold-light flex-shrink-0" />
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative px-6 md:px-8 py-3 bg-gold-dark text-white flex items-center justify-between gap-3">
+              <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-semibold">Registro habilitante</span>
+              <span className="font-sans text-sm font-semibold tabular-nums">Mat. MJyDH N° 5050/2020</span>
             </div>
           </div>
         </div>
