@@ -191,40 +191,58 @@ export default function DigitalSystem() {
               <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-navy/[0.05] text-navy">
                 <BookOpen className="w-5 h-5" strokeWidth={1.5} />
               </span>
-              <h3 className="font-serif text-xl md:text-2xl leading-tight text-navy">Instructivos y normativa</h3>
+              <h3 className="font-serif text-xl md:text-2xl leading-tight text-navy">Instructivos y normativa oficial</h3>
             </div>
             <ul className="divide-y divide-navy/10">
-              <li>
-                <a
-                  href="https://www.argentina.gob.ar/normativa/nacional/norma-427062/texto"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid="link-resolucion"
-                  className="flex items-center justify-between gap-4 py-3.5 group"
-                >
-                  <span>
-                    <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-slate-700 block mb-0.5">Norma vigente</span>
-                    <span className="font-serif text-[17px] text-navy group-hover:text-gold-dark transition-colors">Resolución MJ N° 277/2026</span>
-                  </span>
-                  <ExternalLink className="w-4 h-4 text-slate-700 group-hover:text-gold-dark transition-colors flex-shrink-0" strokeWidth={1.75} />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://mediacion.jus.gob.ar/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-testid="link-portal"
-                  className="flex items-center justify-between gap-4 py-3.5 group"
-                >
-                  <span>
-                    <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-slate-700 block mb-0.5">Plataforma oficial</span>
-                    <span className="font-serif text-[17px] text-navy group-hover:text-gold-dark transition-colors">Portal de Mediación</span>
-                  </span>
-                  <ExternalLink className="w-4 h-4 text-slate-700 group-hover:text-gold-dark transition-colors flex-shrink-0" strokeWidth={1.75} />
-                </a>
-              </li>
+              {[
+                {
+                  eyebrow: "Manual oficial",
+                  title: "Manual de uso del SIGIM",
+                  href: "https://www.saij.gob.ar/docs-f/manual-sigim.pdf",
+                  testid: "link-manual-sigim",
+                },
+                {
+                  eyebrow: "Guía de onboarding",
+                  title: "Guía para registrarse en el Portal de Mediación",
+                  href: "https://www.cpacf.org.ar/public/uploads/files/com/29062610_Instructivo%20Proceso%20de%20onboarding%20-%20Ministerio%20de%20Justicia_c.pdf",
+                  testid: "link-guia-registro",
+                },
+                {
+                  eyebrow: "Consultas frecuentes",
+                  title: "Preguntas frecuentes sobre SIGIM",
+                  href: "https://www.argentina.gob.ar/sites/default/files/2018/07/preguntas_frecuentes_sigim_v1.pdf",
+                  testid: "link-faq-sigim",
+                },
+                {
+                  eyebrow: "Norma vigente",
+                  title: "Resolución MJ N° 277/2026",
+                  href: "https://www.argentina.gob.ar/normativa/nacional/norma-427062/texto",
+                  testid: "link-resolucion",
+                },
+              ].map((item) => (
+                <li key={item.testid}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={item.testid}
+                    className="flex items-center justify-between gap-4 py-3.5 group"
+                  >
+                    <span className="flex items-start gap-3 min-w-0">
+                      <BookOpen className="w-4 h-4 mt-1 text-gold-dark flex-shrink-0" strokeWidth={1.75} aria-hidden="true" />
+                      <span className="min-w-0">
+                        <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-slate-700 block mb-0.5">{item.eyebrow}</span>
+                        <span className="font-serif text-[16px] md:text-[17px] text-navy group-hover:text-gold-dark transition-colors block">{item.title}</span>
+                      </span>
+                    </span>
+                    <ExternalLink className="w-4 h-4 text-slate-700 group-hover:text-gold-dark transition-colors flex-shrink-0" strokeWidth={1.75} aria-label="Recurso externo oficial (abre en pestaña nueva)" />
+                  </a>
+                </li>
+              ))}
             </ul>
+            <p className="mt-5 pt-4 border-t border-navy/10 font-sans text-[11.5px] leading-relaxed text-slate-700">
+              Los documentos enlazados pertenecen a sus respectivos organismos oficiales y pueden ser actualizados por las autoridades competentes.
+            </p>
           </div>
 
           <div className="bg-white border border-navy/10 rounded-2xl p-6 md:p-7 shadow-[0_4px_20px_-12px_rgba(15,42,71,0.15)]">
