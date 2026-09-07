@@ -82,6 +82,18 @@ export default function Process() {
           })}
         </div>
 
+        {/* Botón acceso a SIGIM */}
+        <div className="mt-10 md:mt-12 flex justify-center">
+          <a
+            href="#sigim"
+            data-testid="process-sigim-link"
+            onClick={(e) => { e.preventDefault(); document.getElementById("sigim")?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+            className="inline-flex items-center gap-2.5 bg-navy text-ivory px-7 py-3.5 text-[11px] uppercase font-semibold tracking-[0.2em] rounded-md shadow-[0_14px_30px_-14px_rgba(15,42,71,0.6)] hover:bg-navy-mid hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Conocer el nuevo sistema SIGIM
+          </a>
+        </div>
+
         {/* Acuerdo o cierre */}
         <div data-testid="process-closing" className="mt-10 md:mt-12 bg-cloud border border-navy/10 rounded-2xl p-7 md:p-9">
           <h3 className="font-serif text-2xl md:text-[1.75rem] leading-tight text-navy mb-3">

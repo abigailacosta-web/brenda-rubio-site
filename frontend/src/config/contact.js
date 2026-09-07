@@ -9,7 +9,7 @@ export const CONTACT = {
   email: "brendamrubio@gmail.com",
   whatsappNumber: "5491156392309",
   whatsappDisplay: "+54 9 11 5639-2309",
-  address: 'Paraná 426, Piso 5° "K", CABA',
+  address: 'Paraná 426, piso 15, oficina "K", CABA',
   addressCity: "Ciudad Autónoma de Buenos Aires",
   modality: "100% virtual por Zoom",
   // Portrait — Brenda's professional photo
