@@ -1,12 +1,12 @@
 import React from "react";
 import { ArrowUpRight, GraduationCap, ShieldCheck, Landmark, MessageSquare } from "lucide-react";
-import { CONTACT, waLink } from "@/config/contact";
+import { CONTACT } from "@/config/contact";
 
 const trustPoints = [
   { icon: GraduationCap, label: "Abogada UBA" },
-  { icon: ShieldCheck, label: "Ex apoderada aseguradoras" },
-  { icon: Landmark, label: "Ley N° 26.589 · CABA" },
-  { icon: MessageSquare, label: "Zoom · WhatsApp" },
+  { icon: ShieldCheck, label: "Registro Nacional de Mediación" },
+  { icon: Landmark, label: "Ley N° 26.589" },
+  { icon: MessageSquare, label: "Presencial · A distancia" },
 ];
 
 export default function Hero() {
@@ -38,32 +38,35 @@ export default function Hero() {
       />
 
       <div className="relative container-narrow grid md:grid-cols-12 gap-8 md:gap-12 items-start">
-        {/* Left */}
         <div className="md:col-span-7 pt-2 md:pt-4">
           <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-navy/10 rounded-full pl-2 pr-4 py-1.5 mb-6 shadow-[0_6px_20px_-14px_rgba(15,42,71,0.35)] animate-fade-in">
             <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-dark text-white text-[10px] font-bold">BR</span>
             <span className="font-sans text-[10px] tracking-[0.16em] uppercase text-navy font-semibold">
-              Dra. Brenda M. Rubio · Abogada UBA · Especialista en accidentes de tránsito
+              Dra. Brenda M. Rubio · Abogada UBA · Mediadora prejudicial matriculada
             </span>
           </div>
 
           <h1
             data-testid="hero-title"
-            className="font-serif font-medium tracking-tight leading-[0.98] text-[2.25rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.75rem] text-navy animate-fade-up"
+            className="font-serif font-medium tracking-tight leading-[0.98] text-[2.25rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.5rem] text-navy animate-fade-up"
           >
-            <span className="italic font-light text-navy-mid">Mediación prejudicial</span> en accidentes de tránsito en <span className="text-gold-dark">CABA</span>.
+            <span className="italic font-light text-navy-mid">Mediación</span> prejudicial <span className="text-gold-dark">obligatoria</span>.
           </h1>
-
-          <p className="mt-3 font-sans text-sm md:text-[15px] text-slate-700 font-medium animate-fade-up" style={{ animationDelay: "80ms" }}>
-            Por sorteo público o designación privada · Audiencias 100% virtuales por Zoom.
-          </p>
 
           <p
             data-testid="hero-subtitle"
-            className="mt-6 font-sans text-[15px] md:text-base leading-relaxed text-slate-700 max-w-[62ch] animate-fade-up"
-            style={{ animationDelay: "120ms" }}
+            className="mt-6 font-serif text-xl md:text-2xl lg:text-[1.65rem] leading-[1.35] text-navy max-w-[52ch] animate-fade-up"
+            style={{ animationDelay: "80ms" }}
           >
-            Soy <span className="text-navy font-semibold">abogada y mediadora prejudicial matriculada</span>, especializada en la gestión y resolución de conflictos derivados de accidentes de tránsito y siniestros viales. Trabajo con abogados y estudios jurídicos de CABA y de todo el país que necesitan fijar o sortear mediaciones en esta jurisdicción.
+            Un espacio de <em className="italic font-light text-gold-dark">diálogo</em> para encontrar soluciones antes de llegar a la instancia judicial.
+          </p>
+
+          <p
+            data-testid="hero-small"
+            className="mt-5 font-sans text-[13px] md:text-sm leading-relaxed text-slate-700 max-w-[60ch] animate-fade-up"
+            style={{ animationDelay: "160ms" }}
+          >
+            Mediadora prejudicial matriculada · Ley 26.589 · Audiencias presenciales y a distancia conforme a la normativa vigente.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center gap-3 animate-fade-up" style={{ animationDelay: "220ms" }}>
@@ -77,13 +80,12 @@ export default function Hero() {
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
             </a>
             <a
-              href={waLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid="hero-whatsapp"
+              href="#los-si-mediacion"
+              onClick={go("los-si-mediacion")}
+              data-testid="hero-los-si"
               className="inline-flex items-center gap-2.5 border border-navy/30 text-navy px-6 py-3.5 text-[11px] uppercase font-semibold tracking-[0.2em] rounded-md bg-white/70 hover:bg-navy hover:text-ivory hover:border-navy transition-all duration-300"
             >
-              Escribir por WhatsApp
+              Los sí de la mediación
             </a>
           </div>
 
@@ -106,10 +108,8 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Right — Portrait slot + profile card */}
         <div className="md:col-span-5">
           <div className="relative animate-fade-up" style={{ animationDelay: "300ms" }}>
-            {/* Portrait slot — 4:5 aspect. Replace CONTACT.portraitImage when photo arrives. */}
             <figure
               data-testid="hero-portrait-slot"
               className="relative rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.55)] mb-5 bg-navy"
@@ -129,7 +129,6 @@ export default function Hero() {
               />
             </figure>
 
-            {/* Profile card — compact */}
             <div className="relative bg-navy text-ivory rounded-2xl overflow-hidden shadow-[0_30px_60px_-30px_rgba(15,42,71,0.6)]">
               <div className="absolute -top-14 -right-8 font-serif text-[13rem] leading-none text-gold/10 select-none pointer-events-none">M</div>
               <div className="relative p-6 md:p-7">
@@ -141,8 +140,8 @@ export default function Hero() {
                   {[
                     "Abogada · Universidad de Buenos Aires",
                     "Mediadora prejudicial · Ley N° 26.589",
-                    "Experiencia previa como apoderada de compañías aseguradoras",
-                    "Audiencias 100% virtuales por Zoom",
+                    "Registro Nacional de Mediación",
+                    "Audiencias presenciales y a distancia",
                   ].map((it) => (
                     <li key={it} className="flex items-start gap-3 font-sans text-[13px] text-ivory/90 leading-snug">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold-light flex-shrink-0" />
@@ -150,15 +149,9 @@ export default function Hero() {
                     </li>
                   ))}
                 </ul>
-                <div className="grid grid-cols-2 gap-3 pt-4 border-t border-ivory/15">
-                  <div>
-                    <p className="eyebrow-sm text-[9px] text-ivory/60 mb-0.5">Jurisdicción</p>
-                    <p className="font-serif text-base text-ivory">CABA</p>
-                  </div>
-                  <div>
-                    <p className="eyebrow-sm text-[9px] text-ivory/60 mb-0.5">Consultas</p>
-                    <p className="font-serif text-base text-ivory">Todo el país</p>
-                  </div>
+                <div className="pt-4 border-t border-ivory/15">
+                  <p className="eyebrow-sm text-[9px] text-ivory/60 mb-1">Consultas</p>
+                  <p className="font-serif text-base text-ivory">Todo el país</p>
                 </div>
                 <div className="mt-5 -mx-6 md:-mx-7 -mb-6 md:-mb-7 px-6 md:px-7 py-3 bg-gold-dark text-white flex items-center justify-between gap-3">
                   <span className="font-sans text-[10px] uppercase tracking-[0.2em] font-semibold">Registro habilitante</span>

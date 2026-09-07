@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "@/components/landing/Navbar";
 import Hero from "@/components/landing/Hero";
+import WhyMediation from "@/components/landing/WhyMediation";
 import About from "@/components/landing/About";
 import Services from "@/components/landing/Services";
 import Process from "@/components/landing/Process";
@@ -16,6 +17,7 @@ export default function Landing() {
     <main data-testid="landing-page" className="bg-ivory text-navy overflow-x-hidden">
       <Navbar />
       <Hero />
+      <WhyMediation />
       <About />
       <Services />
       <Process />
