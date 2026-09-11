@@ -1,0 +1,6 @@
+/* App-level overrides */
+.App {
+    background-color: #FBFBF9;
+    color: #0F2A47;
+    min-height: 100vh;
+}
