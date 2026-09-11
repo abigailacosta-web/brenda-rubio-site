@@ -12,7 +12,7 @@ const steps = [
     n: "02",
     icon: Settings,
     title: "Gestión de la mediación",
-    text: "La mediadora recibe y gestiona la solicitud mediante el sistema vigente. Se coordinan con el profesional interviniente las cuestiones necesarias para la audiencia, las notificaciones, sus gastos y el pago del bono MEPRE.",
+    text: "La mediadora recibe y gestiona la solicitud mediante el sistema vigente. Coordina con el profesional interviniente las cuestiones necesarias para la audiencia, las notificaciones, sus gastos y el pago del bono MEPRE.",
   },
   {
     n: "03",
@@ -100,15 +100,18 @@ export default function Process() {
             Acuerdo o <em className="font-light text-gold-dark">cierre</em>
           </h3>
           <p className="font-sans text-[14px] md:text-[15px] leading-relaxed text-slate-700 max-w-[80ch]">
-            Si las partes arriban a un acuerdo, este se instrumenta con los recaudos y las firmas correspondientes. Si no existe acuerdo, se emite el acta de cierre que habilita, cuando corresponda, la continuación de la vía judicial.
+            Si las partes arriban a un acuerdo, este se instrumenta con los recaudos y las firmas correspondientes. Si no existe acuerdo, se emite el acta de cierre de instancia.
           </p>
         </div>
 
-        {/* Highlighted callout — sin rótulo "Aviso institucional" */}
+        {/* Recuadro azul — Resolución del conflicto */}
         <div className="mt-6 md:mt-8 bg-navy text-ivory rounded-2xl p-7 md:p-9 grid md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-8">
-            <p className="font-serif text-xl md:text-2xl leading-tight text-ivory">
-              Un acuerdo instrumentado con los recaudos legales es ejecutable mediante el procedimiento de <em className="font-light text-gold-light">ejecución de sentencia</em> y puede evitar un proceso judicial prolongado.
+            <h3 className="font-serif text-2xl md:text-[1.75rem] leading-tight text-ivory mb-3">
+              Resolución del <em className="font-light text-gold-light">conflicto</em>
+            </h3>
+            <p className="font-sans text-[14px] md:text-[15px] leading-relaxed text-ivory/85 max-w-[70ch]">
+              El acuerdo alcanzado en mediación, instrumentado en acta MEPRE, es ejecutable mediante el procedimiento de ejecución de sentencia (art. 30 de la Ley 26.589).
             </p>
           </div>
           <div className="md:col-span-4 md:justify-self-end">

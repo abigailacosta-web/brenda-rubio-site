@@ -48,13 +48,14 @@ export default function Navbar() {
           </span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 font-sans text-sm text-navy">
+        <nav className="hidden lg:flex items-center gap-2.5 font-sans text-navy">
           {links.map((l) => (
             <a
               key={l.id}
               href={`#${l.id}`}
               onClick={go(l.id)}
-              className="relative py-2 hover:text-gold-dark focus:text-gold-dark transition-colors after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-0.5 after:h-[2px] after:bg-gold after:scale-x-0 after:origin-center after:transition-transform hover:after:scale-x-100 focus:after:scale-x-100"
+              data-testid={`nav-link-${l.id}`}
+              className="inline-flex items-center border border-navy/15 bg-white/80 rounded-md px-4 py-2 text-[13px] font-medium shadow-[0_2px_10px_-6px_rgba(15,42,71,0.2)] hover:bg-navy hover:text-ivory hover:border-navy hover:-translate-y-0.5 transition-all duration-300"
             >
               {l.label}
             </a>
@@ -92,13 +93,14 @@ export default function Navbar() {
         }`}
       >
         <div className="container-narrow py-4">
-          <nav className="flex flex-col gap-1 font-sans">
+          <nav className="flex flex-col gap-2 font-sans">
             {links.map((l) => (
               <a
                 key={l.id}
                 href={`#${l.id}`}
                 onClick={go(l.id)}
-                className="py-3 px-2 text-navy border-b border-navy/10 text-[15px] hover:text-gold-dark focus:text-gold-dark focus:bg-navy/[0.03] transition-colors"
+                data-testid={`nav-mobile-link-${l.id}`}
+                className="py-3 px-4 text-navy text-[15px] font-medium border border-navy/15 rounded-md bg-white hover:bg-navy hover:text-ivory hover:border-navy transition-colors"
               >
                 {l.label}
               </a>

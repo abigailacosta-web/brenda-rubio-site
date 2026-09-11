@@ -34,7 +34,7 @@ export default function Footer({ onOpenPrivacy }) {
         </div>
 
         <div className="mt-12 md:mt-14 grid md:grid-cols-12 gap-8 md:gap-10 border-t border-ivory/15 pt-10">
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <p className="eyebrow-sm text-gold-light mb-3">Contacto</p>
             <ul className="space-y-2.5 font-sans text-sm">
               <li>
@@ -56,18 +56,27 @@ export default function Footer({ onOpenPrivacy }) {
             </ul>
           </div>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <p className="eyebrow-sm text-gold-light mb-3">Domicilio constituido · CABA</p>
             <ul className="space-y-2.5 font-sans text-sm">
-              <li>{CONTACT.address}</li>
-              <li>{CONTACT.addressCity}</li>
-              <li className="text-ivory/70 text-xs mt-2">
-                Modalidad: audiencias {CONTACT.modality}.
+              <li>
+                <a
+                  href={CONTACT.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="footer-address"
+                  className="hover:text-gold-light transition-colors underline underline-offset-4 decoration-ivory/30 hover:decoration-gold-light"
+                >
+                  {CONTACT.address}
+                </a>
+              </li>
+              <li className="text-ivory/70">
+                {CONTACT.addressCity} · Audiencias {CONTACT.modality}
               </li>
             </ul>
           </div>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <p className="eyebrow-sm text-gold-light mb-3">Enlaces</p>
             <ul className="space-y-2.5 font-sans text-sm">
               <li>
@@ -96,6 +105,34 @@ export default function Footer({ onOpenPrivacy }) {
                   Volver arriba
                   <ArrowUp className="w-3.5 h-3.5" strokeWidth={2} />
                 </button>
+              </li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
+            <p className="eyebrow-sm text-gold-light mb-3">Marco normativo</p>
+            <ul className="space-y-2.5 font-sans text-sm">
+              <li>
+                <a
+                  href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/165000-169999/166999/norma.htm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="footer-ley-26589"
+                  className="hover:text-gold-light transition-colors"
+                >
+                  Ley 26.589 – Mediación y conciliación
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://servicios.infoleg.gob.ar/infolegInternet/anexos/185000-189999/187495/norma.htm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-testid="footer-decreto-1467"
+                  className="hover:text-gold-light transition-colors"
+                >
+                  Decreto 1467/2011 – Reglamentación de la Ley 26.589
+                </a>
               </li>
             </ul>
           </div>

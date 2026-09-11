@@ -1,31 +1,8 @@
 import React from "react";
 import {
-  FileSignature, ExternalLink, BookOpen, LifeBuoy, FolderInput, CalendarClock,
-  ArrowUpRight, ShieldCheck, MonitorSmartphone, Lock, CheckCircle2, Mail
+  FileSignature, ExternalLink, BookOpen, LifeBuoy,
+  ShieldCheck, MonitorSmartphone, Lock, CheckCircle2, Mail
 } from "lucide-react";
-
-const cards = [
-  {
-    icon: FolderInput,
-    title: "Carga en SIGIM",
-    text: "Recibo la información necesaria y gestiono su incorporación al sistema oficial conforme a los requisitos vigentes y con la documentación ordenada.",
-  },
-  {
-    icon: CalendarClock,
-    title: "Coordinación de audiencia",
-    text: "Coordino la fecha de audiencia según la disponibilidad correspondiente y comunico los datos necesarios para la participación virtual.",
-  },
-  {
-    icon: FileSignature,
-    title: "Actas conforme al sistema",
-    text: "Gestiono las actas de acuerdo o cierre mediante las herramientas oficiales y con las firmas exigidas por la normativa aplicable.",
-  },
-  {
-    icon: ArrowUpRight,
-    title: "Seguimiento del procedimiento",
-    text: "Mantengo una comunicación ordenada sobre el estado del trámite para que los profesionales intervinientes conozcan el avance de cada etapa.",
-  },
-];
 
 export default function DigitalSystem() {
   const scrollToResources = (e) => {
@@ -185,7 +162,7 @@ export default function DigitalSystem() {
         </div>
 
         {/* Instructivos y normativa + Ayuda y soporte */}
-        <div id="sigim-recursos" data-testid="sigim-resources" className="scroll-mt-24 grid md:grid-cols-2 gap-4 md:gap-5 mb-14 md:mb-16">
+        <div id="sigim-recursos" data-testid="sigim-resources" className="scroll-mt-24 grid md:grid-cols-2 gap-4 md:gap-5">
           <div className="bg-white border border-navy/10 rounded-2xl p-6 md:p-7 shadow-[0_4px_20px_-12px_rgba(15,42,71,0.15)]">
             <div className="flex items-center gap-3 mb-5">
               <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-navy/[0.05] text-navy">
@@ -283,45 +260,6 @@ export default function DigitalSystem() {
           </div>
         </div>
 
-        {/* Gestión digital de la mediación prejudicial */}
-        <div className="mb-10 md:mb-12">
-          <div className="flex items-center gap-4 mb-6">
-            <span className="divider-gold" />
-            <span className="eyebrow text-navy">Gestión digital</span>
-          </div>
-          <h3 className="font-serif font-medium text-3xl md:text-4xl lg:text-[2.75rem] leading-[1.1] tracking-tight text-navy max-w-[26ch]">
-            Gestión digital de la mediación <em className="font-light text-gold-dark">prejudicial</em>.
-          </h3>
-          <p className="mt-5 font-sans text-[15px] leading-relaxed text-slate-700 max-w-[70ch]">
-            Contar con una mediadora actualizada y predispuesta a acompañar la adaptación al nuevo sistema permite gestionar cada etapa del procedimiento de manera ordenada, desde la carga inicial hasta el cierre, conforme a las herramientas y requisitos vigentes.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {cards.map((c, idx) => {
-            const Icon = c.icon;
-            return (
-              <div
-                key={c.title}
-                data-testid={`digital-card-${idx}`}
-                className="group bg-white border border-navy/10 rounded-2xl p-6 shadow-[0_4px_20px_-12px_rgba(15,42,71,0.15)] hover:shadow-[0_20px_40px_-20px_rgba(15,42,71,0.35)] hover:-translate-y-1 hover:border-gold/50 transition-all duration-500"
-              >
-                <div className="flex items-center justify-between mb-5">
-                  <span className="inline-flex items-center justify-center w-11 h-11 rounded-xl bg-gold/10 border border-gold/25 text-gold-dark group-hover:bg-gold-dark group-hover:text-white transition-colors duration-500">
-                    <Icon className="w-5 h-5" strokeWidth={1.5} />
-                  </span>
-                  <span className="font-serif text-2xl text-gold-dark/40 group-hover:text-gold-dark/80 transition-colors duration-500">
-                    0{idx + 1}
-                  </span>
-                </div>
-                <h3 className="font-serif text-xl leading-tight mb-3 text-navy">{c.title}</h3>
-                <p className="font-sans text-[13px] leading-relaxed text-slate-700">
-                  {c.text}
-                </p>
-              </div>
-            );
-          })}
-        </div>
       </div>
     </section>
   );
