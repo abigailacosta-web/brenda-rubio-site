@@ -70,7 +70,7 @@ export default function ContactForm({ onOpenPrivacy }) {
       setForm(initial);
       toast.success("Consulta enviada. Le responderé personalmente a la brevedad.");
     } catch (err) {
-      const msg = err?.response?.data?.detail || "No se pudo enviar la consulta. Intente nuevamente o escriba a brendamrubio@gmail.com";
+      const msg = err?.response?.data?.detail || `No se pudo enviar la consulta. Intente nuevamente o escriba a ${CONTACT.email}`;
       toast.error(typeof msg === "string" ? msg : "Error al enviar la consulta.");
     } finally {
       setSubmitting(false);

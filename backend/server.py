@@ -29,7 +29,8 @@ db = client[os.environ['DB_NAME']]
 EMAIL_BASE_URL = "https://integrations.emergentagent.com"
 EMAIL_KEY = os.environ["EMERGENT_EMAIL_KEY"]
 EMAIL_FROM_NAME = os.environ["EMAIL_FROM_NAME"]
-NOTIFICATION_EMAIL = os.environ.get('NOTIFICATION_EMAIL', 'brendamrubio@gmail.com')
+NOTIFICATION_EMAIL = os.environ.get('NOTIFICATION_EMAIL', 'contacto@brendarubio.com.ar')
+EMAIL_REPLY_TO = os.environ.get('EMAIL_REPLY_TO')
 
 app = FastAPI(title="Dra. Brenda M. Rubio — Mediación Prejudicial")
 api_router = APIRouter(prefix="/api")
@@ -68,6 +69,8 @@ class AudienceRequest(BaseModel):
     privacy_accepted: bool = True
     email_sent: bool = False
     email_error: Optional[str] = None
+    confirmation_sent: bool = False
+    confirmation_error: Optional[str] = None
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 
@@ -195,9 +198,11 @@ def _assert_safe_email(subject: str, html: str) -> None:
                 raise ValueError(f"Anchor text {m.group(1)!r} != real link host {real!r}")
 
 
-async def send_email(*, to: str, subject: str, html: str) -> Optional[str]:
+async def send_email(*, to: str, subject: str, html: str, reply_to: Optional[str] = None) -> Optional[str]:
     _assert_safe_email(subject, html)
     payload = {"to": [to], "subject": subject, "html": html, "from_name": EMAIL_FROM_NAME}
+    if reply_to:
+        payload["contact_email"] = reply_to
     async with httpx.AsyncClient(timeout=30) as http_client:
         resp = await http_client.post(
             f"{EMAIL_BASE_URL}/api/v1/email/send",
@@ -219,6 +224,57 @@ async def send_notification_email(data: AudienceRequest) -> tuple[bool, Optional
         return True, None
     except Exception as e:
         logger.exception("Notification email failed")
+        return False, str(e)
+
+
+def build_confirmation_html(data: AudienceRequest) -> str:
+    return f"""
+    <!DOCTYPE html>
+    <html>
+      <body style="margin:0;padding:0;background:#F4F5F7;font-family:Arial,Helvetica,sans-serif;color:#0F2A47;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F4F5F7;padding:32px 0;">
+          <tr><td align="center">
+            <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="background:#FFFFFF;border:1px solid rgba(15,42,71,0.12);border-radius:8px;overflow:hidden;">
+              <tr><td style="padding:24px 32px 8px 32px;border-bottom:1px solid rgba(15,42,71,0.10);background:#0F2A47;color:#FBFBF9;">
+                <p style="margin:0 0 4px 0;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#C8A464;">Consulta recibida</p>
+                <h1 style="margin:0 0 16px 0;font-size:22px;font-weight:600;color:#FBFBF9;">Gracias por su consulta</h1>
+              </td></tr>
+              <tr><td style="padding:24px 32px;font-size:14px;line-height:1.7;color:#0F2A47;">
+                <p style="margin:0 0 12px 0;">Estimado/a <strong>{escape(data.lawyer_name)}</strong>:</p>
+                <p style="margin:0 0 12px 0;">Recibí su consulta a través de mi sitio web y le responderé personalmente a la brevedad, por el medio que indicó, con la disponibilidad de fechas y los próximos pasos.</p>
+                <p style="margin:0;">Si consignó una fecha preferida para la audiencia, la misma queda sujeta a confirmación de disponibilidad.</p>
+              </td></tr>
+              <tr><td style="padding:0 32px 24px 32px;">
+                <div style="padding:16px;background:#F4EBD4;border-left:3px solid #C8A464;border-radius:4px;font-size:13px;line-height:1.8;color:#0F2A47;">
+                  <strong>Dra. Brenda M. Rubio</strong> · Abogada UBA · Mediadora prejudicial matriculada<br/>
+                  Correo: <a href="mailto:contacto@brendarubio.com.ar" style="color:#0F2A47;">contacto@brendarubio.com.ar</a><br/>
+                  WhatsApp: +54 9 11 5639-2309<br/>
+                  Paraná 426, piso 15, oficina "K", CABA
+                </div>
+              </td></tr>
+              <tr><td style="padding:16px 32px;border-top:1px solid rgba(15,42,71,0.10);font-size:12px;color:#6B7280;">
+                Mensaje automático de confirmación enviado por {escape(EMAIL_FROM_NAME)}. Si lo prefiere, puede responder a este correo o comunicarse por los medios indicados.
+              </td></tr>
+            </table>
+          </td></tr>
+        </table>
+      </body>
+    </html>
+    """
+
+
+async def send_confirmation_email(data: AudienceRequest) -> tuple[bool, Optional[str]]:
+    try:
+        email_id = await send_email(
+            to=data.email,
+            subject="Recibí su consulta — Dra. Brenda M. Rubio, mediadora",
+            html=build_confirmation_html(data),
+            reply_to=EMAIL_REPLY_TO,
+        )
+        logger.info(f"Confirmation email sent: {email_id}")
+        return True, None
+    except Exception as e:
+        logger.exception("Confirmation email failed")
         return False, str(e)
 
 
@@ -250,6 +306,10 @@ async def create_audience_request(payload: AudienceRequestCreate):
     sent, error = await send_notification_email(request_obj)
     request_obj.email_sent = sent
     request_obj.email_error = error
+
+    conf_sent, conf_error = await send_confirmation_email(request_obj)
+    request_obj.confirmation_sent = conf_sent
+    request_obj.confirmation_error = conf_error
 
     doc = request_obj.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
