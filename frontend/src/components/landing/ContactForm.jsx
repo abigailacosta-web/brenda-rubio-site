@@ -17,6 +17,7 @@ const initial = {
   email: "",
   phone: "",
   procedure_type: "Mediación prejudicial por accidente de tránsito",
+  preferred_date: "",
   description: "",
   privacy_accepted: false,
   website: "", // honeypot
@@ -124,16 +125,23 @@ export default function ContactForm({ onOpenPrivacy }) {
                   <p className="font-serif text-lg md:text-xl text-navy group-hover:text-gold-dark transition-colors break-all">{CONTACT.email}</p>
                 </div>
               </a>
-              <div className="flex items-start gap-4">
+              <a
+                href={CONTACT.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-testid="contact-address"
+                className="flex items-start gap-4 group"
+                aria-label={`Ver en Google Maps: ${CONTACT.address}`}
+              >
                 <span className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-navy text-gold-light flex-shrink-0">
                   <MapPin className="w-5 h-5" strokeWidth={1.5} />
                 </span>
                 <div>
                   <p className="eyebrow-sm text-slate-700 mb-0.5">Domicilio constituido · CABA</p>
-                  <p className="font-serif text-lg md:text-xl text-navy leading-tight">{CONTACT.address}</p>
+                  <p className="font-serif text-lg md:text-xl text-navy leading-tight group-hover:text-gold-dark transition-colors">{CONTACT.address}</p>
                   <p className="font-sans text-sm text-slate-700 mt-1">{CONTACT.addressCity} · Audiencias {CONTACT.modality}</p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 
@@ -282,6 +290,20 @@ export default function ContactForm({ onOpenPrivacy }) {
                         <option key={op} value={op}>{op}</option>
                       ))}
                     </select>
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <Label htmlFor="preferred_date" className="eyebrow-sm text-navy mb-2 block">
+                      Fecha preferida para la audiencia <span className="normal-case tracking-normal text-slate-700 font-normal">(opcional)</span>
+                    </Label>
+                    <Input
+                      id="preferred_date" type="date" data-testid="input-preferred-date"
+                      value={form.preferred_date} onChange={update("preferred_date")}
+                      className={`${inputBase} md:max-w-xs`}
+                    />
+                    <p className="mt-1.5 font-sans text-[11.5px] text-slate-600">
+                      La fecha queda sujeta a confirmación de disponibilidad.
+                    </p>
                   </div>
 
                   <div className="md:col-span-2">

@@ -45,6 +45,7 @@ class AudienceRequestCreate(BaseModel):
     matricula: Optional[str] = Field(default="", max_length=100)
     email: EmailStr
     phone: Optional[str] = Field(default="", max_length=50)
+    preferred_date: Optional[str] = Field(default="", max_length=20)
     procedure_type: str = Field(..., min_length=2, max_length=150)
     description: str = Field(..., min_length=10, max_length=4000)
     privacy_accepted: bool = Field(...)
@@ -61,6 +62,7 @@ class AudienceRequest(BaseModel):
     matricula: Optional[str] = ""
     email: EmailStr
     phone: Optional[str] = ""
+    preferred_date: Optional[str] = ""
     procedure_type: Optional[str] = ""
     description: str
     privacy_accepted: bool = True
@@ -75,6 +77,13 @@ def build_notification_html(data: AudienceRequest) -> str:
     matricula_row = ""
     if data.consultant_type == "abogado" and data.matricula:
         matricula_row = f'<tr><td style="padding:8px 0;color:#6B7280;">Matrícula</td><td style="padding:8px 0;">{escape(data.matricula)}</td></tr>'
+    fecha_row = ""
+    if data.preferred_date:
+        try:
+            fecha_fmt = datetime.strptime(data.preferred_date, "%Y-%m-%d").strftime("%d/%m/%Y")
+        except ValueError:
+            fecha_fmt = data.preferred_date
+        fecha_row = f'<tr><td style="padding:8px 0;color:#6B7280;">Fecha preferida para la audiencia</td><td style="padding:8px 0;">{escape(fecha_fmt)} (sujeta a confirmación de disponibilidad)</td></tr>'
     return f"""
     <!DOCTYPE html>
     <html>
@@ -93,6 +102,7 @@ def build_notification_html(data: AudienceRequest) -> str:
                   {matricula_row}
                   <tr><td style="padding:8px 0;color:#6B7280;">Email</td><td style="padding:8px 0;"><a href="mailto:{escape(data.email)}" style="color:#0F2A47;">{escape(data.email)}</a></td></tr>
                   <tr><td style="padding:8px 0;color:#6B7280;">Teléfono</td><td style="padding:8px 0;">{escape(data.phone) if data.phone else '—'}</td></tr>
+                  {fecha_row}
                   <tr><td style="padding:8px 0;color:#6B7280;">Tipo de trámite</td><td style="padding:8px 0;"><strong>{escape(data.procedure_type)}</strong></td></tr>
                 </table>
                 <div style="margin-top:16px;padding:16px;background:#F4EBD4;border-left:3px solid #C8A464;border-radius:4px;">

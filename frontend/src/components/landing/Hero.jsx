@@ -50,7 +50,7 @@ export default function Hero() {
             data-testid="hero-title"
             className="font-serif font-medium tracking-tight leading-[0.98] text-[2.25rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.5rem] text-navy animate-fade-up"
           >
-            <span className="italic font-light text-navy-mid">Mediación</span> prejudicial <span className="text-gold-dark">obligatoria</span>.
+            <span className="italic font-light text-navy-mid">Mediación</span> <span className="text-gold-dark">prejudicial</span>.
           </h1>
 
           <p
@@ -137,16 +137,12 @@ export default function Hero() {
                 <h3 className="font-serif text-2xl md:text-[1.75rem] leading-tight text-ivory">
                   Brenda Mayra <em className="font-light text-ivory/80">Rubio</em>
                 </h3>
-                <div className="mt-4 pt-4 border-t border-ivory/15 flex items-baseline gap-3">
-                  <p className="eyebrow-sm text-[9px] text-ivory/60">Consultas</p>
-                  <p className="font-serif text-base text-ivory">Todo el país</p>
-                </div>
               </div>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
                 {[
                   "Abogada · Universidad de Buenos Aires",
                   "Mediadora prejudicial · Ley N° 26.589",
-                  "Registro Nacional de Mediación",
+                  "Mediadora · Registro Nacional de Conciliadores en las Relaciones de Consumo (Ley 26.993)",
                   "Audiencias presenciales y a distancia",
                 ].map((it) => (
                   <li key={it} className="flex items-start gap-3 font-sans text-[13px] text-ivory/90 leading-snug">

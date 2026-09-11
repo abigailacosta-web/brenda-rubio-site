@@ -11,7 +11,8 @@ export const CONTACT = {
   whatsappDisplay: "+54 9 11 5639-2309",
   address: 'Paraná 426, piso 15, oficina "K", CABA',
   addressCity: "Ciudad Autónoma de Buenos Aires",
-  modality: "100% virtual por Zoom",
+  modality: "presenciales y por herramientas virtuales",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Paran%C3%A1+426%2C+CABA%2C+Argentina",
   // Portrait — Brenda's professional photo
   portraitImage: "https://customer-assets-4nw71qhi.emergentagent.net/job_dra-brenda-rubio/artifacts/rq2zg6xk_Foto%20orginal%20Brenda.png",
   portraitAlt: "Retrato profesional de la Dra. Brenda Mayra Rubio",
