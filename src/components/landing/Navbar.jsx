@@ -10,14 +10,31 @@ const links = [
 ];
 
 const linkBase =
-  "inline-flex items-center justify-center uppercase font-semibold tracking-[0.16em] rounded-md border border-gold-dark/45 bg-white/90 text-navy shadow-[0_6px_16px_-10px_rgba(168,136,73,0.6)] hover:bg-gold-dark hover:text-white hover:border-gold-dark transition-all duration-300";
+  "inline-flex items-center justify-center uppercase font-semibold tracking-[0.16em] rounded-md border transition-all duration-300";
+const linkIdle =
+  "border-gold-dark/70 bg-gold-pale text-navy shadow-[0_6px_16px_-10px_rgba(168,136,73,0.7)] hover:bg-gold hover:text-navy hover:border-gold-dark";
+const linkActive = "border-gold-dark bg-gold-dark text-white shadow-[0_8px_20px_-10px_rgba(168,136,73,0.9)]";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = links.map((l) => document.getElementById(l.id)).filter(Boolean);
+    const onScroll = () => {
+      const marker = window.scrollY + window.innerHeight * 0.35;
+      let current = "";
+      for (const s of sections) if (s.offsetTop <= marker) current = s.id;
+      setActive(current);
+    };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -63,7 +80,8 @@ export default function Navbar() {
               href={`#${l.id}`}
               onClick={go(l.id)}
               data-testid={`nav-link-${l.id}`}
-              className={`${linkBase} px-5 py-2.5 text-[11px] hover:-translate-y-0.5`}
+              aria-current={active === l.id ? "true" : undefined}
+              className={`${linkBase} ${active === l.id ? linkActive : linkIdle} px-5 py-2.5 text-[11px] hover:-translate-y-0.5`}
             >
               {l.label}
             </a>
@@ -99,7 +117,8 @@ export default function Navbar() {
                 href={`#${l.id}`}
                 onClick={go(l.id)}
                 data-testid={`nav-mobile-link-${l.id}`}
-                className={`${linkBase} py-3.5 px-4 text-[12px]`}
+                aria-current={active === l.id ? "true" : undefined}
+                className={`${linkBase} ${active === l.id ? linkActive : linkIdle} py-3.5 px-4 text-[12px]`}
               >
                 {l.label}
               </a>
