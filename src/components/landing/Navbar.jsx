@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { CONTACT } from "@/config/contact";
 
 const links = [
   { id: "sobre-mi", label: "Sobre mí" },
@@ -7,6 +8,9 @@ const links = [
   { id: "proceso", label: "Proceso" },
   { id: "contacto", label: "Contacto" },
 ];
+
+const linkBase =
+  "inline-flex items-center justify-center uppercase font-semibold tracking-[0.16em] rounded-md border border-gold-dark/45 bg-white/90 text-navy shadow-[0_6px_16px_-10px_rgba(168,136,73,0.6)] hover:bg-gold-dark hover:text-white hover:border-gold-dark transition-all duration-300";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,39 +41,34 @@ export default function Navbar() {
         scrolled || open ? "bg-ivory/95 backdrop-blur-md border-b border-navy/10" : "bg-transparent"
       }`}
     >
-      <div className="container-narrow flex items-center justify-between h-16 md:h-[76px]">
-        <a href="#top" onClick={go("top")} data-testid="nav-brand" className="flex items-center gap-3 leading-none min-w-0">
-          <span className="inline-flex items-center justify-center w-9 h-9 rounded-md bg-navy text-gold font-serif text-lg tracking-tight flex-shrink-0">R</span>
-          <span className="flex flex-col min-w-0">
-            <span className="font-serif text-base md:text-lg tracking-tight text-navy truncate">Dra. Brenda M. Rubio</span>
-            <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.14em] text-slate-700 font-medium truncate">
-              Abogada UBA · Mediadora prejudicial matriculada
-            </span>
+      <div className="container-narrow flex items-center justify-between gap-4 h-16 md:h-[76px]">
+        <a href="#top" onClick={go("top")} data-testid="nav-brand" className="flex items-center gap-3 min-w-0" aria-label="Brenda Rubio, mediadora — ir al inicio">
+          <img
+            src={CONTACT.logoMark}
+            alt="Logo BR — Brenda Rubio"
+            data-testid="nav-logo"
+            className="h-10 md:h-12 w-auto flex-shrink-0 select-none"
+            draggable="false"
+          />
+          <span className="flex flex-col min-w-0 leading-none">
+            <span className="font-sans text-[11px] md:text-[12px] uppercase tracking-[0.24em] font-semibold text-navy truncate">Brenda Rubio</span>
+            <span className="mt-1 font-serif text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-slate-700 truncate">Mediadora</span>
           </span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-2.5 font-sans text-navy">
+        <nav className="hidden lg:flex items-center gap-3 font-sans" aria-label="Navegación principal">
           {links.map((l) => (
             <a
               key={l.id}
               href={`#${l.id}`}
               onClick={go(l.id)}
               data-testid={`nav-link-${l.id}`}
-              className="inline-flex items-center border border-navy/15 bg-white/80 rounded-md px-4 py-2 text-[13px] font-medium shadow-[0_2px_10px_-6px_rgba(15,42,71,0.2)] hover:bg-navy hover:text-ivory hover:border-navy hover:-translate-y-0.5 transition-all duration-300"
+              className={`${linkBase} px-5 py-2.5 text-[11px] hover:-translate-y-0.5`}
             >
               {l.label}
             </a>
           ))}
         </nav>
-
-        <a
-          href="#contacto"
-          onClick={go("contacto")}
-          data-testid="nav-cta"
-          className="hidden lg:inline-flex items-center gap-2 bg-gold-dark text-white px-4 xl:px-5 py-2.5 text-[10px] xl:text-[11px] uppercase font-semibold tracking-[0.18em] rounded-md shadow-[0_8px_20px_-10px_rgba(168,136,73,0.75)] hover:bg-navy hover:text-ivory hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
-        >
-          Consultar disponibilidad
-        </a>
 
         <button
           type="button"
@@ -78,7 +77,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-navy hover:bg-navy/5 transition-colors"
+          className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-md border border-navy/15 bg-white/80 text-navy hover:bg-navy/5 transition-colors flex-shrink-0"
         >
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
@@ -93,25 +92,18 @@ export default function Navbar() {
         }`}
       >
         <div className="container-narrow py-4">
-          <nav className="flex flex-col gap-2 font-sans">
+          <nav className="flex flex-col gap-2.5 font-sans" aria-label="Navegación móvil">
             {links.map((l) => (
               <a
                 key={l.id}
                 href={`#${l.id}`}
                 onClick={go(l.id)}
                 data-testid={`nav-mobile-link-${l.id}`}
-                className="py-3 px-4 text-navy text-[15px] font-medium border border-navy/15 rounded-md bg-white hover:bg-navy hover:text-ivory hover:border-navy transition-colors"
+                className={`${linkBase} py-3.5 px-4 text-[12px]`}
               >
                 {l.label}
               </a>
             ))}
-            <a
-              href="#contacto"
-              onClick={go("contacto")}
-              className="mt-4 inline-flex items-center justify-center gap-2 bg-gold-dark text-white px-5 py-3.5 text-[11px] uppercase font-semibold tracking-[0.18em] rounded-md"
-            >
-              Consultar disponibilidad
-            </a>
           </nav>
         </div>
       </div>

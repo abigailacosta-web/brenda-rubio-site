@@ -17,6 +17,11 @@ export const CONTACT = {
   portraitImage: "/images/brenda-rubio.png",
   portraitAlt: "Retrato profesional de la Dra. Brenda Mayra Rubio",
   portraitIsInstitutional: false,
+  // Logo BR (monograma + nombre), fondo transparente
+  logoMark: "/images/logo-br-mark.png",
+  logoMarkLight: "/images/logo-br-mark-light.png",
+  logoFull: "/images/logo-br.png",
+  phonePrefix: "+54 9",
 };
 
 export const waLink = (message = "Hola Dra. Rubio, quisiera consultar disponibilidad para una mediación.") =>

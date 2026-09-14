@@ -39,11 +39,19 @@ export default function Hero() {
 
       <div className="relative container-narrow grid md:grid-cols-12 gap-6 md:gap-x-12 md:gap-y-10 items-start">
         <div className="md:col-span-7 pt-2 md:pt-4">
-          <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-navy/10 rounded-full pl-2 pr-4 py-1.5 mb-6 shadow-[0_6px_20px_-14px_rgba(15,42,71,0.35)] animate-fade-in">
-            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gold-dark text-white text-[10px] font-bold">BR</span>
-            <span className="font-sans text-[10px] tracking-[0.16em] uppercase text-navy font-semibold">
-              Dra. Brenda M. Rubio · Abogada UBA · Mediadora prejudicial matriculada
-            </span>
+          <div data-testid="hero-brand" className="flex items-center gap-4 sm:gap-5 mb-7 md:mb-8 animate-fade-in">
+            <img
+              src={CONTACT.logoMark}
+              alt="Logo BR — Brenda Rubio, mediadora"
+              data-testid="hero-logo"
+              className="h-16 sm:h-20 md:h-24 w-auto flex-shrink-0 select-none"
+              draggable="false"
+            />
+            <div className="min-w-0 border-l border-gold-dark/40 pl-4 sm:pl-5">
+              <p className="font-sans text-[13px] sm:text-sm md:text-base uppercase tracking-[0.26em] font-semibold text-navy leading-none">Brenda Rubio</p>
+              <p className="mt-2 font-serif text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.32em] text-gold-dark leading-none">Mediadora</p>
+              <p className="mt-2 font-sans text-[11px] md:text-xs tracking-[0.06em] text-slate-700 leading-snug">Abogada UBA · Mediación prejudicial · Ley 26.589</p>
+            </div>
           </div>
 
           <h1

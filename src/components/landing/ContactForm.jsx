@@ -13,7 +13,8 @@ const API = `${BACKEND_URL}/api`;
 const initial = {
   consultant_type: "abogado",
   lawyer_name: "",
-  matricula: "",
+  tomo: "",
+  folio: "",
   email: "",
   phone: "",
   procedure_type: "Mediación prejudicial por accidente de tránsito",
@@ -21,6 +22,13 @@ const initial = {
   description: "",
   privacy_accepted: false,
   website: "", // honeypot
+};
+
+const buildPayload = (form) => {
+  const { tomo, folio, phone, ...rest } = form;
+  const digits = phone.replace(/\D/g, "");
+  const matricula = [tomo.trim() && `Tomo ${tomo.trim()}`, folio.trim() && `Folio ${folio.trim()}`].filter(Boolean).join(" · ");
+  return { ...rest, phone: digits ? `${CONTACT.phonePrefix} ${digits}` : "", matricula };
 };
 
 const procedureOptions = [
@@ -50,6 +58,7 @@ export default function ContactForm({ onOpenPrivacy }) {
     const errs = {};
     if (!form.lawyer_name.trim() || form.lawyer_name.trim().length < 2) errs.lawyer_name = "Ingrese su nombre o estudio.";
     if (!form.email.trim() || !/^\S+@\S+\.\S+$/.test(form.email)) errs.email = "Ingrese un email válido.";
+    if (form.phone && form.phone.replace(/\D/g, "").length < 10) errs.phone = "Ingrese código de área y número (10 dígitos, sin 0 ni 15).";
     if (!form.procedure_type.trim()) errs.procedure_type = "Seleccione un tipo de trámite.";
     if (!form.description.trim() || form.description.trim().length < 10) errs.description = "Describa brevemente la consulta (mínimo 10 caracteres).";
     if (!form.privacy_accepted) errs.privacy_accepted = "Debe aceptar la Política de Privacidad.";
@@ -65,7 +74,7 @@ export default function ContactForm({ onOpenPrivacy }) {
     }
     setSubmitting(true);
     try {
-      await axios.post(`${API}/audience-requests`, form, { headers: { "Content-Type": "application/json" } });
+      await axios.post(`${API}/audience-requests`, buildPayload(form), { headers: { "Content-Type": "application/json" } });
       setSubmitted(true);
       setForm(initial);
       toast.success("Consulta enviada. Le responderé personalmente a la brevedad.");
@@ -250,23 +259,53 @@ export default function ContactForm({ onOpenPrivacy }) {
                     <Label htmlFor="phone" className="eyebrow-sm text-navy mb-2 block">
                       Teléfono o WhatsApp <span className="normal-case tracking-normal text-slate-700 font-normal">(opcional)</span>
                     </Label>
-                    <Input
-                      id="phone" type="tel" data-testid="input-phone"
-                      value={form.phone} onChange={update("phone")}
-                      className={inputBase} placeholder="+54 9 11 ..."
-                    />
+                    <div className={`flex items-stretch overflow-hidden ${errors.phone ? "rounded-md ring-2 ring-red-500/50" : ""}`}>
+                      <span
+                        data-testid="phone-prefix"
+                        aria-hidden="true"
+                        className="inline-flex items-center px-3.5 bg-navy/[0.05] border border-r-0 border-navy/20 rounded-l-md font-sans text-[15px] font-semibold text-navy whitespace-nowrap select-none"
+                      >
+                        {CONTACT.phonePrefix}
+                      </span>
+                      <Input
+                        id="phone" type="tel" inputMode="numeric" data-testid="input-phone"
+                        value={form.phone}
+                        onChange={(e) => update("phone")({ target: { value: e.target.value.replace(/[^\d\s-]/g, "").slice(0, 14) } })}
+                        className={`${inputBase} rounded-l-none`} placeholder="11 5639 2309"
+                        aria-label={`Teléfono, código de área y número (prefijo ${CONTACT.phonePrefix} fijo)`}
+                        aria-invalid={!!errors.phone}
+                        aria-describedby="hint-phone"
+                        maxLength={14}
+                      />
+                    </div>
+                    <p id="hint-phone" className={`mt-1.5 font-sans text-[11.5px] ${errors.phone ? "text-red-700" : "text-slate-600"}`}>
+                      {errors.phone || "Solo código de área y número, sin 0 ni 15. Ej.: 11 5639 2309"}
+                    </p>
                   </div>
 
                   {form.consultant_type === "abogado" && (
                     <div className="md:col-span-2">
-                      <Label htmlFor="matricula" className="eyebrow-sm text-navy mb-2 block">
+                      <p className="eyebrow-sm text-navy mb-2 block">
                         Matrícula profesional <span className="normal-case tracking-normal text-slate-700 font-normal">(opcional)</span>
-                      </Label>
-                      <Input
-                        id="matricula" data-testid="input-matricula"
-                        value={form.matricula} onChange={update("matricula")}
-                        className={inputBase} placeholder="Tº / Fº · CPACF · CSJN"
-                      />
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-4">
+                        <div>
+                          <Label htmlFor="tomo" className="font-sans text-[12px] font-medium text-slate-700 mb-1.5 block">Tomo</Label>
+                          <Input
+                            id="tomo" data-testid="input-tomo" inputMode="numeric"
+                            value={form.tomo} onChange={update("tomo")}
+                            className={inputBase} placeholder="Completar" maxLength={10}
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="folio" className="font-sans text-[12px] font-medium text-slate-700 mb-1.5 block">Folio</Label>
+                          <Input
+                            id="folio" data-testid="input-folio" inputMode="numeric"
+                            value={form.folio} onChange={update("folio")}
+                            className={inputBase} placeholder="Completar" maxLength={10}
+                          />
+                        </div>
+                      </div>
                     </div>
                   )}
 

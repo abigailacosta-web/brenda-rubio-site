@@ -29,7 +29,7 @@ export default function Footer({ onOpenPrivacy }) {
             <p className="mt-1 font-sans text-sm text-ivory/70">Jurisdicción {CONTACT.jurisdiction}</p>
           </div>
           <div className="hidden md:flex flex-col items-end">
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-gold-dark text-white font-serif text-2xl">R</span>
+            <img src={CONTACT.logoMarkLight} alt="Logo BR — Brenda Rubio" className="h-16 w-auto opacity-90 select-none" draggable="false" />
           </div>
         </div>
 

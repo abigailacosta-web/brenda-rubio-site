@@ -61,7 +61,7 @@ export default function About() {
 
           <div className="md:col-span-7 space-y-5 font-sans text-[15px] md:text-base leading-relaxed text-slate-700 max-w-[68ch]">
             <p className="text-navy">
-              Soy <em className="not-italic font-semibold">Brenda Mayra Rubio</em>, abogada graduada de la Universidad de Buenos Aires y mediadora prejudicial matriculada en el Registro Nacional de Mediación.
+              Soy <span data-testid="about-name" className="font-serif font-semibold text-[1.2em] tracking-[0.03em] text-gold-dark">Brenda Mayra Rubio</span>, abogada graduada de la Universidad de Buenos Aires y mediadora prejudicial matriculada en el Registro Nacional de Mediación.
             </p>
             <p>
               Concibo la mediación como un espacio profesional de diálogo en el que las personas, asistidas por sus abogados, pueden abordar sus diferencias y explorar alternativas de solución antes de recurrir —o continuar— por la vía judicial.
