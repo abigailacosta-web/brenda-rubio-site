@@ -6,7 +6,7 @@ export const CONTACT = {
   matricula: "Mat. MJyDH N° 5050/2020",
   law: "Ley N° 26.589",
   jurisdiction: "CABA",
-  email: "contacto@brendarubio.com.ar",
+  email: "brendamrubio@gmail.com",
   whatsappNumber: "5491156392309",
   whatsappDisplay: "+54 9 11 5639-2309",
   address: 'Paraná 426, piso 15, oficina "K", CABA',

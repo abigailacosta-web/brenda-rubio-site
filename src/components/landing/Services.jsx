@@ -1,5 +1,5 @@
 import React from "react";
-import { Briefcase, Scale, ArrowUpRight, Check } from "lucide-react";
+import { Briefcase, Scale, Check } from "lucide-react";
 
 const subjects = [
   "Daños y perjuicios",
@@ -13,11 +13,6 @@ const subjects = [
 ];
 
 export default function Services() {
-  const go = (e) => {
-    e.preventDefault();
-    document.getElementById("contacto")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <section id="servicios" data-testid="services-section" className="relative bg-navy text-ivory py-20 md:py-28 overflow-hidden">
       <div
@@ -77,15 +72,6 @@ export default function Services() {
                 Trabajo con profesionales que necesiten gestionar una mediación en esta jurisdicción, ofreciendo organización del procedimiento, audiencias presenciales o a distancia y disponibilidad ágil de fechas.
               </p>
             </div>
-            <a
-              href="#contacto"
-              onClick={go}
-              data-testid="service-cta-0"
-              className="inline-flex items-center justify-center gap-2 self-start bg-gold-dark text-white px-6 py-3 text-[11px] uppercase font-semibold tracking-[0.2em] rounded-md hover:bg-white hover:text-navy transition-all duration-300"
-            >
-              Consultar disponibilidad
-              <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2} />
-            </a>
           </div>
 
           {/* Card 2 — Ámbito de actuación */}
